@@ -2,7 +2,7 @@
 
 ####  一、atomic包
 
-![image-20200502212432644](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200502212432644.png)
+![image-20200502212432644](https://github.com/rainluacgq/java/blob/master/JUC/pic/image-20200502212442798.png)
 
 #### Java实现CAS的原理 - Unsafe类
 
