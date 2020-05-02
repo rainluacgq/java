@@ -52,11 +52,11 @@
 
 比如 `springboot-start-web` 会自动添加`tomcat` `springMVC`
 
-![image-20200430215129666](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200430215129666.png)
+![image-20200430215129666](https://github.com/rainluacgq/java/blob/master/spring%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/pic/image-20200430215129666.png)
 
 最关键的注解 `@Import(AutoConfigurationImportSelector.class)` 背后的英雄是 `springFactoryLoader`
 
-![image-20200430220040503](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200430220040503.png)
+![image-20200430220040503](https://github.com/rainluacgq/java/blob/master/spring%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/pic/image-20200430220040503.png
 
 从classpath中搜寻所有的`MATA-INF/spring.factories`配置文件，并将其中的`org.springframework.boot.autoconfigure.EnableAutoConfiguration` 对应的配置通过反射实例化，并加载到IOC容器中
 
