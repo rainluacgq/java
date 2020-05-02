@@ -8,5 +8,5 @@
 
 ![img](https://img2018.cnblogs.com/blog/1469088/201901/1469088-20190115224657827-727143634.jpg)
 
-![Package concurrent](G:\java\git\java\JUC\pic\Package concurrent.png)
+![Package concurrent](https://github.com/rainluacgq/java/blob/master/JUC/pic/Package%20concurrent.png)
 
