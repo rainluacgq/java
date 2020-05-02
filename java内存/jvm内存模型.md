@@ -32,7 +32,7 @@ Full GC 之后永久代的大小都会改变，所以经常会抛出 OutOfMemory
 方法区是一个 JVM 规范，永久代与元空间都是其一种实现方式。在 JDK 1.8 之后，原来永久代的数据被分到了堆和元
 空间中。元空间存储类的元信息，静态变量和常量池等放入堆中  
 
-![image-20200502145412094](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200502145412094.png)
+![image-20200502145412094](https://github.com/rainluacgq/java/blob/master/java%E5%86%85%E5%AD%98/pic/image-20200502145412094.png)
 
 
 
