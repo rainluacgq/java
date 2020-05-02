@@ -45,7 +45,7 @@ Java 6 为了减少获得锁和释放锁带来的性能消耗，引入了“偏�
 
 markword 64bit的含义如下：
 
-![image-20200502165328528](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200502165328528.png)
+![image-20200502165328528](https://github.com/rainluacgq/java/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B/pic/image-20200502165328528.png)
 
 
 
