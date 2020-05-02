@@ -1,6 +1,6 @@
 ### JVM 内存模型
 
-![image-20200502114445725](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200502114445725.png)
+![image-20200502114445725](https://github.com/rainluacgq/java/blob/master/java%E5%86%85%E5%AD%98/pic/image-20200502114445725.png)
 
 ###### 内存区域划分
 
