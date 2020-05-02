@@ -108,7 +108,7 @@ protected ConfigurableApplicationContext createApplicationContext() {
 }
 ```
 
-![image-20200501103051421](https://github.com/rainluacgq/java/tree/master/spring%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/pic/image-20200501103051421.png)
+![image-20200501103051421](https://github.com/rainluacgq/java/blob/master/spring%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/pic/image-20200501103051421.png)
 
 方法会先获取显式设置的应用上下文(applicationContextClass)，如果不存在，再加载默认的环境配置（通过是否是web environment判断），默认选择AnnotationConfigApplicationContext注解上下文（通过扫描所有注解类来加载bean），最后通过BeanUtils实例化上下文对象，并返回，
 
