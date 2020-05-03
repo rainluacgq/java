@@ -1,6 +1,6 @@
 #### concurrentHashMap总结
 
-![image-20200503205338027](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200503205338027.png)
+![image-20200503205338027](https://github.com/rainluacgq/java/blob/master/JUC/pic/image-20200503205338027.png)
 
 每个绿色的实体是嵌套类 Entry 的实例，Entry 包含四个属性：key, value, hash 值和用于单向链表的 next。
 
