@@ -224,4 +224,4 @@ start slave;
 
 ####   3.master position不正确导致的问题
 
-![image-20200429163310172](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429163310172.png)
+![image-20200429163310172](https://github.com/rainluacgq/java/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429163310172.png)
