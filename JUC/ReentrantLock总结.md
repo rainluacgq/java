@@ -2,7 +2,7 @@
 
 ReentrantLock意思为可重入锁，指的是一个线程能够对一个临界资源重复加锁。
 
-![image-20200503182558940](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200503182558940.png)
+![image-20200503182558940](https://github.com/rainluacgq/java/blob/master/JUC/pic/image-20200503182558940.png)
 
 代码示例：
 
