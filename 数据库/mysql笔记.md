@@ -208,7 +208,7 @@ change master to master_host='192.168.0.1', master_user='slave', master_password
 start slave;
 ```
 
-![image-20200429163938073](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429163938073.png)
+![image-20200429163938073](https://github.com/rainluacgq/java/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429163938073.png)
 
 ##### 常见问题总结：
 
