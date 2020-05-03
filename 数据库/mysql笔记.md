@@ -220,7 +220,7 @@ start slave;
 
 ###### 2.my.cnf 权限导致的问题
 
-![image-20200429142714642](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429142714642.png)
+![image-20200429142714642](https://github.com/rainluacgq/java/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429142714642.png)
 
 ####   3.master position不正确导致的问题
 
