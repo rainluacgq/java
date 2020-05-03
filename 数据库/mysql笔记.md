@@ -198,7 +198,7 @@ change master to master_host='192.168.0.1', master_user='slave', master_password
 
 检查是否开启log-bin，ON表示开启
 
-![image-20200429161231214](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429161231214.png)
+![image-20200429161231214](https://github.com/rainluacgq/java/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429161231214.png)
 
 
 
