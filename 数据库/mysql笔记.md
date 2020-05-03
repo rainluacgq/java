@@ -169,7 +169,7 @@ slave_skip_errors=1062
 
 ## relay_log配置中继日志
 
-relay_log=hik-mysql-relay-bin  
+relay_log=test-mysql-relay-bin  
 
 ## log_slave_updates表示slave将复制事件写进自己的二进制日志
 
