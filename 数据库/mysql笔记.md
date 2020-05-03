@@ -184,7 +184,7 @@ read_only=1
 
 1.show master status
 
-![image-20200429162907245](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429162907245.png)
+![image-20200429162907245](https://github.com/rainluacgq/java/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429162907245.png)
 
 
 
