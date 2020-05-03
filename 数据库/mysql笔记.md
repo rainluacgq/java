@@ -112,7 +112,7 @@ binlog-ignore-db=mysql
 
 ## 开启二进制日志功能，以备Slave作为其它数据库实例的Master时使用
 
-log-bin=hik-mysql-slave1-bin  
+log-bin=test-mysql-slave1-bin  
 
 ## 设置二进制日志使用内存大小（事务）
 
@@ -156,14 +156,14 @@ read_only=1
 2.修改从源
 
 ```bash
-change master to master_host='10.7.32.62', master_user='slave', master_password='123456', master_port=3306, master_log_file='hik-mysql-bin.000001', master_log_pos=154, master_connect_retry=30;  
+change master to master_host='192.168.0.1', master_user='slave', master_password='123456', master_port=3306, master_log_file='test-mysql-bin.000001', master_log_pos=154, master_connect_retry=30;  
 ```
 
 
 
 检查是否开启log-bin，ON表示开启
 
-![image-20200429161231214](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200429161231214.png)
+![image-20200429161231214](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429161231214.png)
 
 
 
@@ -173,20 +173,20 @@ change master to master_host='10.7.32.62', master_user='slave', master_password=
 start slave;
 ```
 
-![image-20200429163938073](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200429163938073.png)
+![image-20200429163938073](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429163938073.png)
 
 ##### 常见问题总结：
 
 ##### 1.uuid相同导致的问题
 
-![image-20200429142422962](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200429142422962.png)
+![image-20200429142422962](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429142422962.png)
 
 
 
 ###### 2.my.cnf 权限导致的问题
 
-![image-20200429142714642](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200429142714642.png)
+![image-20200429142714642](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429142714642.png)
 
 ####   3.master position不正确导致的问题
 
-![image-20200429163310172](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200429163310172.png)
+![image-20200429163310172](https://github.com/rainluacgq/java/tree/master/%E6%95%B0%E6%8D%AE%E5%BA%93/pic/image-20200429163310172.png)
