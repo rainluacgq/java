@@ -18,7 +18,7 @@ Kafka是最初由Linkedin公司开发，是一个分布式、支持分区的（p
 
 ####  1.2 设计思想
 
-![image-20200504122820087](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200504122820087.png)
+![image-20200504122820087](https://github.com/rainluacgq/java/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/pic/image-20200504122820087.png)
 
 1） Producer ： 消息生产者，就是向 kafka broker 发消息的客户端；
 2） Consumer ： 消息消费者，向 kafka broker 取消息的客户端；
