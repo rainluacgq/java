@@ -95,7 +95,7 @@ write(sockfd, buf, len);
 
 使用sendfile不仅减少了数据拷贝的次数，还减少了上下文切换，数据传送始终只发生在kernel space。下图为使用DMA的sendfile零拷贝技术图。
 
-![image-20200504152811317](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200504152811317.png)
+![image-20200504152811317](https://github.com/rainluacgq/java/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/pic/image-20200504152811317.png)
 
 使用sendfile不仅减少了数据拷贝的次数，还减少了上下文切换，数据传送始终只发生在kernel space。下图为使用DMA的sendfile零拷贝技术图。
 
