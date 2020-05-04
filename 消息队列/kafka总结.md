@@ -40,11 +40,11 @@ message包括3个属性：offset、messageSize，data
 
 1.3 数据文件索引（分段索引、稀疏存储）
 
-![image-20200427210852708](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200427210852708.png)
+![image-20200427210852708](https://github.com/rainluacgq/java/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/pic/image-20200427210852708.png)
 
 
 
-![image-20200427203955968](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200427203955968.png)
+![image-20200427203955968](https://github.com/rainluacgq/java/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/pic/image-20200427203955968.png)
 
 
 
