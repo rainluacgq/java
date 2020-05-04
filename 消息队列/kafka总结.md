@@ -211,11 +211,11 @@ Linux下对应的命令为：
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
 
-![image-20200504113059980](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200504113059980.png)
+![image-20200504113059980](https://github.com/rainluacgq/java/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/pic/image-20200504113059980.png)
 
 由于生产者生产的消息会不断追加到 log 文件末尾， 为防止 log 文件过大导致数据定位效率低下， Kafka 采取了分片和索引机制，将每个 partition 分为多个 segment。 每个 segment对应两个文件——“.index”文件和“.log”文件。  
 
-![image-20200504113146775](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200504113146775.png)
+![image-20200504113146775](https://github.com/rainluacgq/java/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/pic/image-20200504113146775.png)
 
 
 
