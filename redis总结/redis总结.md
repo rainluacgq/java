@@ -4,7 +4,7 @@
 
 Redis 是速度非常快的非关系型（NoSQL）内存键值数据库，可以存储键和五种不同类型的值之间的映射。键的类型只能为字符串，值支持五种数据类型：字符串、列表、集合、散列表、有序集合。Redis 支持很多特性，例如将内存中的数据持久化到硬盘中，使用复制来扩展读性能，使用分片来扩展写性能。  
 
-![image-20200505103557919](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200505103557919.png)
+![image-20200505103557919](https://github.com/rainluacgq/java/blob/master/redis%E6%80%BB%E7%BB%93/pic/image-20200505103557919.png)
 
 Redis如此快的原因：
 
@@ -121,12 +121,12 @@ AOF 配置：
 - **监控：**检查主从服务器是否运行正常。
 - **提醒：**通过 API 向管理员或者其它应用程序发送故障通知。
 - **自动故障迁移：**主从切换（在 Master 宕机后，将其中一个 Slave 转为 Master，其他的 Slave 从该节点同步数据）。
-- ![image-20200505112548094](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200505112548094.png)
+- ![image-20200505112548094](https://github.com/rainluacgq/java/blob/master/redis%E6%80%BB%E7%BB%93/pic/image-20200505112548094.png)
 
 （2）Redis Cluster 着眼于扩展性，在单个 redis 内存不足时，使用 Cluster 进行分片存储。
 
 Redis Cluster是一种服务端Sharding技术，3.0版本开始正式提供。Redis Cluster并没有使用一致性hash，而是采用slot(槽)的概念，一共分成16384个槽。将请求发送到任意节点，接收到请求的节点会将查询请求发送到正确的节点上执行
 
-![image-20200505112606144](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200505112606144.png)
+![image-20200505112606144](https://github.com/rainluacgq/java/blob/master/redis%E6%80%BB%E7%BB%93/pic/image-20200505112606144.png)
 
 参考文章：https://mp.weixin.qq.com/s/COZ8Uohv9gDYiAPJ_J4oww
