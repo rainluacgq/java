@@ -212,3 +212,4 @@ void transfer(Entry[] newTable) {
 【参考】  HashMap 在容量不够进行 resize 时由于高并发可能出现死链，导致 CPU 飙升，在
 开发过程中注意规避此风险。  
 
+参考：https://zhuanlan.zhihu.com/p/21673805
