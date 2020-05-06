@@ -58,7 +58,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
 1.确定索引位置：
 
-![image-20200506210900063](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200506210900063.png)
+![image-20200506210900063](https://github.com/rainluacgq/java/blob/master/java%E5%9F%BA%E7%A1%80/pic/image-20200506210900063.png)
 
 ```java
 方法一：
