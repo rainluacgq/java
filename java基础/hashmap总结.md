@@ -2,7 +2,7 @@ java基础
 
 一、hashmap
 
-![image-20200506205521386](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200506205521386.png)
+![image-20200506205521386](https://github.com/rainluacgq/java/blob/master/java%E5%9F%BA%E7%A1%80/pic/image-20200506205521386.png)
 
  HashMap就是使用哈希表来存储的。哈希表为解决冲突，可以采用开放地址法和链地址法等来解决问题，Java中HashMap采用了链地址法。链地址法，简单来说，就是数组加链表的结合。在每个数组元素上都一个链表结构，当数据被Hash后，得到数组下标，把数据放在对应下标元素的链表上。例如程序执行下面代码：
 
