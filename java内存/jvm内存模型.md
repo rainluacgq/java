@@ -38,7 +38,7 @@ Full GC 之后永久代的大小都会改变，所以经常会抛出 OutOfMemory
 
 ### java类加载机制
 
-![image-20200509211020849](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200509211020849.png)
+![image-20200509211020849](https://github.com/rainluacgq/java/blob/master/java%E5%86%85%E5%AD%98/pic/image-20200509211020849.png)
 
 **加载**：
 
@@ -66,7 +66,7 @@ Full GC 之后永久代的大小都会改变，所以经常会抛出 OutOfMemory
 
 #### 类加载器
 
-![image-20200509214355644](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200509214355644.png)
+![image-20200509214355644](https://github.com/rainluacgq/java/blob/master/java%E5%86%85%E5%AD%98/pic/image-20200509214355644.png)
 
 **启动类加载器（Bootstrap ClassLoader  ）**
 
