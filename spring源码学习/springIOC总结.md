@@ -22,7 +22,7 @@ BeanFactory 是 Spring 框架的基础设施，面向 Spring 本身；
 
 BeanFactory提供了
 
-![image-20200510160317595](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200510160317595.png)
+![image-20200510160317595](https://github.com/rainluacgq/java/blob/master/spring%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/pic/image-20200510160317595.png)
 
 ![img](https://blog-1259634016.cos.ap-chengdu.myqcloud.com/img/20190714074041.png)
 
