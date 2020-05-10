@@ -36,6 +36,167 @@ Full GC 之后永久代的大小都会改变，所以经常会抛出 OutOfMemory
 
 
 
+### java类加载机制
+
+![image-20200509211020849](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200509211020849.png)
+
+**加载**：
+
+加载是类加载过程中的一个阶段， 这个阶段会在内存中生成一个代表这个类的 java.lang.Class 对象， 作为方法区这个类的各种数据的入口。注意这里不一定非得要从一个 Class 文件获取，这里既可以从 ZIP 包中读取（比如从 jar 包和 war 包中读取），也可以在运行时计算生成（动态代理），也可以由其它文件生成（比如将 JSP 文件转换成对应的 Class 类）  
+
+**验证**
+
+确保 Class 文件的字节流中包含的信息是否符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。  
+
+**准备**
+
+负责为类的静态成员分配内存，并设置默认初始值
+
+**解析**
+
+将常量池的符号引用替换为直接引用的过程  
+
+**初始化**
+
+初始化，则是为标记为常量值的字段赋值的过程。换句话说，只对static修饰的变量或语句块进行初始化。
+
+如果初始化一个类的时候，其父类尚未初始化，则优先初始化其父类。
+
+如果同时包含多个静态变量和静态代码块，则按照自上而下的顺序依次执行。
+
+#### 类加载器
+
+![image-20200509214355644](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200509214355644.png)
+
+**启动类加载器（Bootstrap ClassLoader  ）**
+
+负责加载 JAVA_HOME\lib 目录中的， 或通过-Xbootclasspath 参数指定路径中的， 且被虚拟机认可（按文件名识别， 如 rt.jar） 的类。  
+
+**扩展类加载器(Extension ClassLoader)  **
+
+负责加载 JAVA_HOME\lib\ext 目录中的，或通过 java.ext.dirs 系统变量指定路径中的类库。  
+
+**应用程序类加载器(Application ClassLoader)**
+
+负责加载用户类路径（ClassPath）上所指定的类库，开发者可以直接使用这个类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。  
+
+### 双亲委派模型
+
+###TODO
+
+![img](https://camo.githubusercontent.com/069d7ec7d8d131fe148a3fc42eb1a27335e0aa0d/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f30646432643430612d356232622d346434352d623137362d6537356134636434626462662e706e67)
+
+### 1. 工作过程
+
+一个类加载器首先将类加载请求转发到父类加载器，只有当父类加载器无法完成时才尝试自己加载。
+
+### 2. 好处
+
+使得 Java 类随着它的类加载器一起具有一种带有优先级的层次关系，从而使得基础类得到统一。
+
+例如 java.lang.Object 存放在 rt.jar 中，如果编写另外一个 java.lang.Object 并放到 ClassPath 中，程序可以编译通过。由于双亲委派模型的存在，所以在 rt.jar 中的 Object 比在 ClassPath 中的 Object 优先级更高，这是因为 rt.jar 中的 Object 使用的是启动类加载器，而 ClassPath 中的 Object 使用的是应用程序类加载器。rt.jar 中的 Object 优先级更高，那么程序中所有的 Object 都是这个 Object。
+
+### 3. 实现
+
+以下是抽象类 java.lang.ClassLoader 的代码片段，其中的 loadClass() 方法运行过程如下：先检查类是否已经加载过，如果没有则让父类加载器去加载。当父类加载器加载失败时抛出 ClassNotFoundException，此时尝试自己去加载。
+
+```java
+public abstract class ClassLoader {
+    // The parent class loader for delegation
+    private final ClassLoader parent;
+
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        return loadClass(name, false);
+    }
+
+    protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+        synchronized (getClassLoadingLock(name)) {
+            // First, check if the class has already been loaded
+            Class<?> c = findLoadedClass(name);
+            if (c == null) {
+                try {
+                    if (parent != null) {
+                        c = parent.loadClass(name, false);
+                    } else {
+                        c = findBootstrapClassOrNull(name);
+                    }
+                } catch (ClassNotFoundException e) {
+                    // ClassNotFoundException thrown if class not found
+                    // from the non-null parent class loader
+                }
+
+                if (c == null) {
+                    // If still not found, then invoke findClass in order
+                    // to find the class.
+                    c = findClass(name);
+                }
+            }
+            if (resolve) {
+                resolveClass(c);
+            }
+            return c;
+        }
+    }
+
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        throw new ClassNotFoundException(name);
+    }
+}
+```
+
+## 自定义类加载器实现
+
+以下代码中的 FileSystemClassLoader 是自定义类加载器，继承自 java.lang.ClassLoader，用于加载文件系统上的类。它首先根据类的全名在文件系统上查找类的字节代码文件（.class 文件），然后读取该文件内容，最后通过 defineClass() 方法来把这些字节代码转换成 java.lang.Class 类的实例。
+
+java.lang.ClassLoader 的 loadClass() 实现了双亲委派模型的逻辑，自定义类加载器一般不去重写它，但是需要重写 findClass() 方法。
+
+```java
+public class FileSystemClassLoader extends ClassLoader {
+
+    private String rootDir;
+
+    public FileSystemClassLoader(String rootDir) {
+        this.rootDir = rootDir;
+    }
+
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        byte[] classData = getClassData(name);
+        if (classData == null) {
+            throw new ClassNotFoundException();
+        } else {
+            return defineClass(name, classData, 0, classData.length);
+        }
+    }
+
+    private byte[] getClassData(String className) {
+        String path = classNameToPath(className);
+        try {
+            InputStream ins = new FileInputStream(path);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int bufferSize = 4096;
+            byte[] buffer = new byte[bufferSize];
+            int bytesNumRead;
+            while ((bytesNumRead = ins.read(buffer)) != -1) {
+                baos.write(buffer, 0, bytesNumRead);
+            }
+            return baos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String classNameToPath(String className) {
+        return rootDir + File.separatorChar
+                + className.replace('.', File.separatorChar) + ".class";
+    }
+}
+```
+
+
+
+
+
 ### 垃圾收集
 
 1.引用计数 
