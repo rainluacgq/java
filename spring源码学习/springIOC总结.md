@@ -146,6 +146,6 @@ public void refresh() throws BeansException, IllegalStateException {
 
 看一下beanDefinetion
 
-![image-20200510165854980](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200510165854980.png)
+![image-20200510165854980](https://github.com/rainluacgq/java/blob/master/spring%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/pic/image-20200510165854980.png)
 
 参考：https://blog.csdn.net/nuomizhende45/article/details/81158383
