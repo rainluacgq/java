@@ -63,3 +63,52 @@ private Node addWaiter(Node mode) {
     // 其它代码省略
 }
 ```
+
+重要的几个方法和属性值的含义：
+
+| 方法和属性值 | 含义                                                         |
+| ------------ | ------------------------------------------------------------ |
+| waitStatus   | 当前节点在队列中的状态                                       |
+| prev         | 前驱指针                                                     |
+| next         | 后继指针                                                     |
+| thread       | 表示处于该节点的线程                                         |
+| nextWaiter   | 指向下一个处于CONDITION状态的节点（由于本篇文章不讲述Condition Queue队列，这个指针不多介绍） |
+| predecessor  | 返回前驱节点，没有的话抛出npe                                |
+
+线程两种锁的模式：
+
+| 模式      | 含义                           |
+| --------- | ------------------------------ |
+| SHARED    | 表示线程以共享的模式等待锁     |
+| EXCLUSIVE | 表示线程正在以独占的方式等待锁 |
+
+waitStatus有下面几个枚举值：
+
+| 枚举      | 含义                                           |
+| --------- | ---------------------------------------------- |
+| CANCELLED | 为1，表示线程获取锁的请求已经取消了            |
+| SIGNAL    | 为-1，表示线程已经准备好了，就等资源释放了     |
+| CONDITION | 为-2，表示节点在等待队列中，节点线程等待唤醒   |
+| PROPAGATE | 为-3，当前线程处在SHARED情况下，该字段才会使用 |
+| 0         | 当一个Node被初始化的时候的默认值               |
+
+#### **2.1.2 同步状态State**
+
+在了解数据结构后，接下来了解一下AQS的同步状态——State。AQS中维护了一个名为state的字段，意为同步状态，是由Volatile修饰的，用于展示当前临界资源的获锁情况。
+
+```java
+// java.util.concurrent.locks.AbstractQueuedSynchronizer
+
+private volatile int state;
+
+```
+
+下面提供了几个访问这个字段的方法：
+
+| 方法名                                                       | 描述                 |
+| ------------------------------------------------------------ | -------------------- |
+| protected final int getState()                               | 获取State的值        |
+| protected final void setState(int newState)                  | 设置State的值        |
+| protected final boolean compareAndSetState(int expect, int update) | 使用CAS方式更新State |
+
+参考：https://mp.weixin.qq.com/s/sA01gxC4EbgypCsQt5pVog

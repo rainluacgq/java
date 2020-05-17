@@ -1,7 +1,9 @@
 # java
 #### java学习笔记
 
-一、java基础 包括JUC组件，多线程等
+一、java基础 包括JUC组件等
+
+
 
 二、框架 springboot  mybatis等
 

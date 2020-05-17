@@ -17,7 +17,7 @@
 
 
 
-Consul概念
+#### Consul概念
 
 Consul是HashiCorp公司推出的开源软件，提供了微服务系统中的服务治理、配置中心、控制总线等功能。这些功能中的每一个都可以根据需要单独使用，也可以一起使用以构建全方位的服务网格，总之Consul提供了一种完整的服务网格解决方案。
 
@@ -59,3 +59,49 @@ consul agent -dev
 
 #### 二、集成到springcloud
 
+修改依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+配置
+
+```yaml
+server:
+  port: 8206
+spring:
+  application:
+    name: consul-user-service
+  cloud:
+    consul: #Consul服务注册发现配置
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+```
+
+启用client
+
+```java
+@EnableDiscoveryClient
+@SpringBootApplication
+public class ConsulUserServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ConsulUserServiceApplication.class, args);
+    }
+
+}
+```
+
+若成功注册到consul到注册中心，可看到如下信息：
+
+![image-20200516191402878](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200516191402878.png)      
