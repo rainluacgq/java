@@ -141,6 +141,20 @@ public V put(K key, V value) {
 }
 ```
 
+RBTree的定义如下:
+
+1. 任何一个节点都有颜色，黑色或者红色
+2. 根节点是黑色的
+3. 父子节点之间不能出现两个连续的红节点
+4. 任何一个节点向下遍历到其子孙的叶子节点，所经过的黑节点个数必须相等
+5. 空节点被认为是黑色的
+
+RBTree在理论上还是一棵BST树，但是它在对BST的插入和删除操作时会维持树的平衡，即保证树的高度在[logN,logN+1]（理论上，极端的情况下可以出现RBTree的高度达到2*logN，但实际上很难遇到）。这样RBTree的查找时间复杂度始终保持在O(logN)从而接近于理想的BST。RBTree的删除和插入操作的时间复杂度也是O(logN)。RBTree的查找操作就是BST的查找操作。
+
+参考：https://zhuanlan.zhihu.com/p/24367771
+
+在线生成红黑树：https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
+
 3.扩容
 
 ```java
