@@ -149,3 +149,28 @@ public void refresh() throws BeansException, IllegalStateException {
 ![image-20200510165854980](https://github.com/rainluacgq/java/blob/master/spring%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/pic/image-20200510165854980.png)
 
 参考：https://blog.csdn.net/nuomizhende45/article/details/81158383
+
+
+
+
+
+Q1：循环依赖问题
+
+在Spring的DefaultSingletonBeanRegistry类中，你会赫然发现类上方挂着这三个Map：
+
+- singletonObjects 它是我们最熟悉的朋友，俗称“单例池”“容器”，缓存创建完成单例Bean的地方。
+- singletonFactories 映射创建Bean的原始工厂
+- earlySingletonObjects 映射Bean的早期引用，也就是说在这个Map里的Bean不是完整的，甚至还不能称之为“Bean”，只是一个Instance.
+
+```java
+/** Cache of singleton objects: bean name to bean instance. */
+private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
+
+/** Cache of singleton factories: bean name to ObjectFactory. */
+private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+
+/** Cache of early singleton objects: bean name to bean instance. */
+private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
+```
+
+参考：https://mp.weixin.qq.com/s/2u7k_jt-3p_dgTXy4tB7Tg
