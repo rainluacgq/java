@@ -24,7 +24,7 @@
 
 2.[可重入锁ReentrantLock](https://github.com/rainluacgq/java/blob/master/java基础/JUC/ReentrantLock总结.md)
 
-原理：.[AQS](https://github.com/rainluacgq/java/blob/master/java基础/JUC/AQS原理.md)
+原理：[AQS](https://github.com/rainluacgq/java/blob/master/java基础/JUC/AQS原理.md)
 
 3.[Atomic原子操作](https://github.com/rainluacgq/java/blob/master/java基础/JUC/Atomic原子操作.md)
 
