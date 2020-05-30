@@ -34,6 +34,8 @@
 
 ### 并发与锁
 
+[java内存模型基础](https://github.com/rainluacgq/java/blob/master/多线程/java内存模型基础.md)
+
 [java多线程基础](https://github.com/rainluacgq/java/blob/master/多线程/java多线程基础.md)
 
 [synchronized关键字](https://github.com/rainluacgq/java/blob/master/多线程/synchronized关键字.md)
