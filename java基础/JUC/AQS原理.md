@@ -388,5 +388,50 @@ private void doAcquireShared(long arg) {
 }
 ```
 
+同步器tryAcquireShared返回值大于等于0时，能够获取到同步状态。在doAcquireShared(long arg)自旋过程中，如果当前节点的前驱为头节点，表示获取同步状态成功并退出自旋。
+
+如何释放：
+
+```java
+public final boolean releaseShared(long arg) {
+    if (tryReleaseShared(arg)) {
+        doReleaseShared();
+        return true;
+    }
+    return false;
+}
+private void doReleaseShared() {
+        /*
+         * Ensure that a release propagates, even if there are other
+         * in-progress acquires/releases.  This proceeds in the usual
+         * way of trying to unparkSuccessor of head if it needs
+         * signal. But if it does not, status is set to PROPAGATE to
+         * ensure that upon release, propagation continues.
+         * Additionally, we must loop in case a new node is added
+         * while we are doing this. Also, unlike other uses of
+         * unparkSuccessor, we need to know if CAS to reset status
+         * fails, if so rechecking.
+         */
+        for (;;) {
+            Node h = head;
+            if (h != null && h != tail) {
+                int ws = h.waitStatus;
+                if (ws == Node.SIGNAL) {
+                    if (!h.compareAndSetWaitStatus(Node.SIGNAL, 0))
+                        continue;            // loop to recheck cases
+                    unparkSuccessor(h);
+                }
+                else if (ws == 0 &&
+                         !h.compareAndSetWaitStatus(0, Node.PROPAGATE))
+                    continue;                // loop on failed CAS
+            }
+            if (h == head)                   // loop if head changed
+                break;
+        }
+    }
+```
+
+通过循环和CAS保证线程安全释放。
+
 参考：https://mp.weixin.qq.com/s/sA01gxC4EbgypCsQt5pVog
 
