@@ -34,7 +34,7 @@
 
 ### 并发与锁
 
-[java内存模型基础](https://github.com/rainluacgq/java/blob/master/多线程/java内存模型基础.md)
+[java内存模型基础](https://github.com/rainluacgq/java/blob/master/多线程/java内存模型基础.md)     [重排序与happens-before](https://github.com/rainluacgq/java/blob/master/多线程/重排序.md)
 
 [java多线程基础](https://github.com/rainluacgq/java/blob/master/多线程/java多线程基础.md)
 
