@@ -46,3 +46,9 @@ as-if-serial语义保证单线程内重排序后的执行结果和程序代码�
 - 传递性：如果A happens-before B，且B happens-before C，那么A happens-before C。
 - start规则：如果线程A执行操作ThreadB.start()启动线程B，那么A线程的ThreadB.start（）操作happens-before于线程B中的任意操作、
 - join规则：如果线程A执行操作ThreadB.join（）并成功返回，那么线程B中的任意操作happens-before于线程A从ThreadB.join()操作成功返回。
+
+
+
+
+
+参考：https://redspider.gitbook.io/concurrent/di-er-pian-yuan-li-pian/7
