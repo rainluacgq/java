@@ -121,6 +121,8 @@ public class GrpcServerProperties {
 }
 ```
 
+修改application.xml文件如下所示：
+
 ```yaml
 grpc:
   server:
