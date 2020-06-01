@@ -6,7 +6,7 @@
 docker exec -it [containerID] /bin/bash
 ```
 
-![image-20200518201102486](https://github.com/rainluacgq/java/blob/master/java内存/pic/image-20200518201102486.png))
+![image-20200518201102486](https://github.com/rainluacgq/java/blob/master/java内存/pic/image-20200518201102486.png)
 
 执行jstack指令
 
@@ -14,15 +14,15 @@ docker exec -it [containerID] /bin/bash
 jstack 1
 ```
 
-![image-20200518201857178](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200518201857178.png)
+![image-20200518201857178](https://github.com/rainluacgq/java/blob/master/java内存/pic/image-20200518201857178.png)
 
 查看GC概况
 
-![image-20200518202141319](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200518202141319.png)
+![image-20200518202141319](https://github.com/rainluacgq/java/blob/master/java内存/pic/image-20200518202141319.png)
 
 查看JVM运行时参数
 
-![image-20200518202638626](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200518202638626.png)
+![image-20200518202638626](https://github.com/rainluacgq/java/blob/master/java内存/pic/image-20200518202638626.png)
 
 JVM默认配置：
 
