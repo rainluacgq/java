@@ -4,6 +4,30 @@
 
 gRPC 基于如下思想：定义一个服务， 指定其可以被远程调用的方法及其参数和返回类型。gRPC 默认使用 [protocol buffers](https://developers.google.com/protocol-buffers/) 作为接口定义语言，来描述服务接口和有效载荷消息结构。如果有需要的话，可以使用其他替代方案。
 
+gRPC使用protocol buffer作为序列化和通信的接口定义语言，而不是JSON/XML。Protocol buffer可以描述数据的结构，并且可以根据该描述生成代码，以生成或解析表示结构化数据的字节流。这就是为什么gRPC更适合使用polyglot（使用不同的技术部署）的Web应用程序。二进制数据格式使得通信更加轻量，gRPC也可以与其他数据格式一起使用，但首选的格式仍然是protocol buffer。
+
+此外，gRPC构建在HTTP/2之上，它支持双向通信以及传统的请求/响应。gRPC允许服务器和客户端之间的松散耦合。在实践中，客户端发起一个与gRPC服务器的长连接，并为每个RPC调用打开一个新的HTTP/2流。
+
+![image-20200601223141657](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200601223141657.png)
+
+**调用模型**
+
+1、客户端（gRPC Stub）调用 A 方法，发起 RPC 调用。
+
+2、对请求信息使用 Protobuf 进行对象序列化压缩（IDL）。
+
+3、服务端（gRPC Server）接收到请求后，解码请求体，进行业务逻辑处理并返回。
+
+4、对响应结果使用 Protobuf 进行对象序列化压缩（IDL）。
+
+5、客户端接受到服务端响应，解码请求体。回调被调用的 A 方法，唤醒正在等待响应（阻塞）的客户端调用并返回响应结果。
+
+------
+
+**HTTP2.0有哪些新特性**
+
+ 参考：https://cloud.tencent.com/developer/article/1004874
+
 
 
 ### 2.常见的错误类型
