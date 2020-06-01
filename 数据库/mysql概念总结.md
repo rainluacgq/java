@@ -90,10 +90,14 @@ SERIALIZABLE：最高的隔离级别，会在读取的每一行加锁，可能�
 
 #### 索引实战
 
-![image-20200601201851488](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601201851488.png)
+1.使用前缀索引，order_num 建了普通索引，可以看到使用前缀还是走了索引，但是由于select * 导致需要回表
 
 ![image-20200601201851488](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601201851488.png)
+
+2.只检索建了索引的order_num字段，可以看到不需要回表。
 
 ![image-20200601200759913](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601200759913.png)
+
+3.未使用前缀索引的情况。
 
 ![image-20200601201800352](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601201800352.png)
