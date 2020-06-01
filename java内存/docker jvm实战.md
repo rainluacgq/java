@@ -6,7 +6,7 @@
 docker exec -it [containerID] /bin/bash
 ```
 
-![image-20200518201102486](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200518201102486.png)
+![image-20200518201102486]([https://github.com/rainluacgq/java/blob/master/java%E5%86%85%E5%AD%98/pic/image-20200518201102486.png](https://github.com/rainluacgq/java/blob/master/java内存/pic/image-20200518201102486.png))
 
 执行jstack指令
 
