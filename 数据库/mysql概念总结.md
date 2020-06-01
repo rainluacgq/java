@@ -90,10 +90,10 @@ SERIALIZABLE：最高的隔离级别，会在读取的每一行加锁，可能�
 
 #### 索引实战
 
-![image-20200601201851488](G:\java\git\java\penc�^\pic\image-20200601201851488.png)
+![image-20200601201851488](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601201851488.png)
 
-![image-20200601201851488](G:\java\git\java\penc�^\pic\image-20200601201851488.png)
+![image-20200601201851488](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601201851488.png)
 
-![image-20200601200759913](G:\java\git\java\penc�^\pic\image-20200601200759913.png)
+![image-20200601200759913](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601200759913.png)
 
-![image-20200601201800352](G:\weixin\WeChat Files\weixin1934924867\FileStorage\File\2020-06\;`�~\pic\image-20200601201800352.png)
+![image-20200601201800352](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601201800352.png)
