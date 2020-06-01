@@ -55,7 +55,9 @@ gRPC 基于如下思想：定义一个服务， 指定其可以被远程调用�
 
 2.根据proto文件生成 Grpc和outerc.class
 
-![image-20200525155301601](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200525155301601.png)
+使用idea的工具能够快捷生成
+
+![image-20200525155301601](https://github.com/rainluacgq/java/blob/master/RPC框架/pic/image-20200525155301601.png)
 
 
 
