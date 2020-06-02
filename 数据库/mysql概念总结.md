@@ -101,3 +101,10 @@ SERIALIZABLE：最高的隔离级别，会在读取的每一行加锁，可能�
 3.未使用前缀索引的情况。
 
 ![image-20200601201800352](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601201800352.png)
+
+4.使用主键查找
+
+![20200602212552](https://github.com/rainluacgq/java/blob/master/数据库/pic/20200602212552.png)
+
+![20200602212545](https://github.com/rainluacgq/java/blob/master/数据库/pic/20200602212545.png)
+
