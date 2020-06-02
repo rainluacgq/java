@@ -96,7 +96,7 @@ SERIALIZABLE：最高的隔离级别，会在读取的每一行加锁，可能�
 
 2.只检索建了索引的order_num字段，可以看到不需要回表。
 
-![image-20200601200759913](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601200759913.png)
+![image-20200601200759913](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200601201413849.png)
 
 3.未使用前缀索引的情况。
 
