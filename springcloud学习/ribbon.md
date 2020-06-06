@@ -54,6 +54,25 @@ eureka:
 
 ### 二、错误
 
+问题1：
+
 ![image-20200512111404766](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200512111404766.png)
 
 未添加start-web
+
+问题2：第一次加载ribbon提示time out
+
+```java
+java.net.SocketTimeoutException: Read timed out
+```
+
+解决方法：
+
+```yml
+ribbon:
+  eager-load:
+    enabled: true
+    clients: client1, client2, client3
+```
+
+参考：https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html#ribbon-child-context-eager-load

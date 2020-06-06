@@ -44,3 +44,41 @@ eureka:
 4.运行后访问http://localhost:8001/ 看到注册中心界面
 
 ![image-20200512110744109](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200512110744109.png)
+
+
+
+
+
+问题1：
+
+```
+om.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: 拒绝连接 (Connection refused)
+```
+
+
+
+```java
+@ConfigurationProperties(EurekaClientConfigBean.PREFIX)
+public class EurekaClientConfigBean implements EurekaClientConfig, Ordered {
+
+/**
+ * Default Eureka URL.
+ */
+public static final String DEFAULT_URL = "http://localhost:8761" + DEFAULT_PREFIX
+      + "/";
+    private Map<String, String> serviceUrl = new HashMap<>();
+
+    {
+        this.serviceUrl.put(DEFAULT_ZONE, DEFAULT_URL);
+    }
+}
+```
+
+增加配置：
+
+```
+client:
+  service-url:
+    defaultZone: http://localhost:8001/eureka/
+```
+
