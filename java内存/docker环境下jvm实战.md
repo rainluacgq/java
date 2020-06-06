@@ -18,7 +18,7 @@ jstack 1
 
 jmap 查看对象在堆中的分布
 
-![image-20200606190813484](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200606190813484.png)
+![image-20200606190813484](https://github.com/rainluacgq/java/blob/master/java内存/pic/image_20200606191217.png)
 
 查看GC概况
 
