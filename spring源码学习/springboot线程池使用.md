@@ -72,7 +72,7 @@ public class ThreadPoolService {
 四、类中需要使用@Autowired或@Resource等注解自动注入，不能自己手动new对象
 五、如果使用SpringBoot框架必须在启动类中增加@EnableAsync注解
 
-源码地址：G:\java\git\java\spring源码学习
+源码地址：[springboot线程池实战l](https://github.com/rainluacgq/java/tree/master/spring源码学习/code/springboot-threadpool)
 
 看一下SpringBoot中的线程池
 
