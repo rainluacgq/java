@@ -1,6 +1,6 @@
 ### ReentrantLock总结
 
-ReentrantLock意思为可重入锁，指的是一个线程能够对一个临界资源重复加锁。
+ReentrantLock意思为可重入锁，指的是一个线程能够对一个临界资源重复加锁。ReentrantLock虽然没能像Synchronized关键字一样支持隐式的重进入，但是调用lock方法时。已经获取到锁的线程，能够再次调用lock方法获取锁而不被阻塞。
 
 ![image-20200503182558940](https://github.com/rainluacgq/java/blob/master/JUC/pic/image-20200503182558940.png)
 
@@ -40,50 +40,63 @@ public void test () throw Exception {
 
 二、原理了解
 
-非公平锁的加锁过程：
+1.实现重进入
+
+**线程再次获得锁**
+
+锁需要识别获取锁的线程是否为当前占据锁的线程，如果不是，更新state和独占状态。如果是，则再次重新获取。
+
+**锁的最终释放**
+
+线程重复释放锁，其实就是对于state状态进行自减，当state == 0 时，表示锁已经成功释放。
 
 ```java
-// java.util.concurrent.locks.ReentrantLock#NonfairSync
-
-// 非公平锁
-static final class NonfairSync extends Sync {
-  ...
-  final void lock() {
-    if (compareAndSetState(0, 1))
-      setExclusiveOwnerThread(Thread.currentThread());
-    else
-      acquire(1);
-    }
- ...
-}
+  final boolean nonfairTryAcquire(int acquires) {
+            final Thread current = Thread.currentThread();
+            int c = getState();
+            if (c == 0) {
+                if (compareAndSetState(0, acquires)) {
+                    setExclusiveOwnerThread(current);
+                    return true;
+                }
+            }
+            else if (current == getExclusiveOwnerThread()) {
+                int nextc = c + acquires;
+                if (nextc < 0) // overflow
+                    throw new Error("Maximum lock count exceeded");
+                setState(nextc);
+                return true;
+            }
+            return false;
+        }
 ```
 
-- 若通过CAS设置变量State（同步状态）成功，也就是获取锁成功，则将当前线程设置为独占线程。
+公平锁
 
-- 若通过CAS设置变量State（同步状态）失败，也就是获取锁失败，则进入Acquire方法进行后续处理。
+唯一不同就是增加了hasQueuedPredecessors，即同步队列当前节点是否有前驱节点的判断，如果该方法返回true，表示有线程比当前线程更早获得锁。
 
-- 看一下这个Acquire是怎么写的：
+```java
 
-  ```java
-  // java.util.concurrent.locks.AbstractQueuedSynchronizer
-  
-  public final void acquire(int arg) {
-      if (!tryAcquire(arg) && acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
-          selfInterrupt();
-  }
-  
-  ```
-
-  再看一下tryAcquire方法：
-
-  ```java
-  // java.util.concurrent.locks.AbstractQueuedSynchronizer
-  
-  protected boolean tryAcquire(int arg) {
-       throw new UnsupportedOperationException();
-  ```
-
-具体获取锁的实现方法是由各自的公平锁和非公平锁单独实现的（以ReentrantLock为例）。如果该方法返回了True，则说明当前线程获取锁成功，就不用往后执行了；如果获取失败，就需要加入到等待队列中。
+protected final boolean tryAcquire(int acquires) {
+    final Thread current = Thread.currentThread();
+    int c = getState();
+    if (c == 0) {
+        if (!hasQueuedPredecessors() &&
+            compareAndSetState(0, acquires)) {
+            setExclusiveOwnerThread(current);
+            return true;
+        }
+    }
+    else if (current == getExclusiveOwnerThread()) {
+        int nextc = c + acquires;
+        if (nextc < 0)
+            throw new Error("Maximum lock count exceeded");
+        setState(nextc);
+        return true;
+    }
+    return false;
+}
+```
 
 ### 与synchronized比较
 

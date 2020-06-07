@@ -69,6 +69,47 @@ private final Node<K,V>[] initTable() {
 }
 ```
 
+get操作
+
+先经过一次再散列，然后通过散列值定位到Segment。然后通过散列定位到值。
+
+```java
+public V get(Object key) {
+    Node<K,V>[] tab; Node<K,V> e, p; int n, eh; K ek;
+    int h = spread(key.hashCode());
+    if ((tab = table) != null && (n = tab.length) > 0 &&
+        (e = tabAt(tab, (n - 1) & h)) != null) {
+        if ((eh = e.hash) == h) {
+            if ((ek = e.key) == key || (ek != null && key.equals(ek)))
+                return e.val;
+        }
+        else if (eh < 0)
+            return (p = e.find(h, key)) != null ? p.val : null;
+        while ((e = e.next) != null) {
+            if (e.hash == h &&
+                ((ek = e.key) == key || (ek != null && key.equals(ek))))
+                return e.val;
+        }
+    }
+    return null;
+}
+```
+
+get的高效之处在于get过程不需要加锁。
+
+定义成volatile的变量，能够在线程之间保证可见性，能够被多线程同时读，并且保证不会读过期的值，但是只能被单线程写（有一种情况可以被多线程写，即写入的值不依赖于原值）
+
+```java
+volatile V val;
+volatile Node<K,V> next;
+```
+
+2.put操作
+
+
+
+
+
 为什么扩容选择8
 
 ```java
