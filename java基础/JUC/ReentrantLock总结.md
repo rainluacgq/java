@@ -98,6 +98,85 @@ protected final boolean tryAcquire(int acquires) {
 }
 ```
 
+### Condition 接口
+
+每个对象都可以用继承自`Object`的**wait/notify**方法来实现**等待/通知机制**。而Condition接口也提供了类似Object监视器的方法，通过与**Lock**配合来实现等待/通知模式。
+
+那为什么既然有Object的监视器方法了，还要用Condition呢？这里有一个二者简单的对比：
+
+| 对比项                                         | Object监视器                  | Condition                                                   |
+| ---------------------------------------------- | ----------------------------- | ----------------------------------------------------------- |
+| 前置条件                                       | 获取对象的锁                  | 调用Lock.lock获取锁，调用Lock.newCondition获取Condition对象 |
+| 调用方式                                       | 直接调用，比如object.notify() | 直接调用，比如condition.await()                             |
+| 等待队列的个数                                 | 一个                          | 多个                                                        |
+| 当前线程释放锁进入等待状态                     | 支持                          | 支持                                                        |
+| 当前线程释放锁进入等待状态，在等待状态中不中断 | 不支持                        | 支持                                                        |
+| 当前线程释放锁并进入超时等待状态               | 支持                          | 支持                                                        |
+| 当前线程释放锁并进入等待状态直到将来的某个时间 | 不支持                        | 支持                                                        |
+| 唤醒等待队列中的一个线程                       | 支持                          | 支持                                                        |
+| 唤醒等待队列中的全部线程                       | 支持                          | 支持                                                        |
+
+Condition和Object的wait/notify基本相似。其中，Condition的await方法对应的是Object的wait方法，而Condition的**signal/signalAll**方法则对应Object的notify/notifyAll()。但Condition类似于Object的等待/通知机制的加强版。我们来看看主要的方法：
+
+| 方法名称               | 描述                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| await()                | 当前线程进入等待状态直到被通知（signal）或者中断；当前线程进入运行状态并从await()方法返回的场景包括：（1）其他线程调用相同Condition对象的signal/signalAll方法，并且当前线程被唤醒；（2）其他线程调用interrupt方法中断当前线程； |
+| awaitUninterruptibly() | 当前线程进入等待状态直到被通知，在此过程中对中断信号不敏感，不支持中断当前线程 |
+| awaitNanos(long)       | 当前线程进入等待状态，直到被通知、中断或者超时。如果返回值小于等于0，可以认定就是超时了 |
+| awaitUntil(Date)       | 当前线程进入等待状态，直到被通知、中断或者超时。如果没到指定时间被通知，则返回true，否则返回false |
+| signal()               | 唤醒一个等待在Condition上的线程，被唤醒的线程在方法返回前必须获得与Condition对象关联的锁 |
+| signalAll()            | 唤醒所有等待在Condition上的线程，能够从await()等方法返回的线程必须先获得与Condition对象关联的锁 |
+
+使用实例
+
+```java
+package thread;
+
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * 功能描述：
+ *
+ * @Author: national day
+ * @Date: 2020/6/13
+ */
+public class LockTest {
+    Lock lock  = new ReentrantLock();
+    Condition condition = lock.newCondition();
+    public void  conditionWait() throws  InterruptedException{
+        lock.lock();
+        try {
+            condition.await();
+        } 
+         finally {
+            lock.unlock();
+        }
+    }
+
+    public void  conditionSignal() throws  InterruptedException{
+        lock.lock();
+        try {
+            condition.signal();
+        }
+        finally {
+            lock.unlock();
+        }
+    }
+        
+}
+```
+
+一般都会将Condition对象作为成员变量。当调用await（）方法后，当前线程会释放锁并在此等待，其他线程调用Condition对象的signal方法，通知当前线程后，当前线程才从await方法返回。并且在返回前获取锁。
+
+### LockSupport工具
+
+当需要阻塞或者唤醒一个线程的时候，都会使用LockSupport工具类完成相应的工作。LockSupport定义了一组公共静态方法，这些方法提供了最基本的线程阻塞和唤醒功能。
+
+![image-20200613212902828](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200613212902828.png)
+
 ### 与synchronized比较
 
 **1. 锁的实现**
