@@ -22,7 +22,7 @@
 
 1.[JUC组件](https://github.com/rainluacgq/java/blob/master/java基础/JUC/JUC组件.md)
 
-2.[可重入锁ReentrantLock](https://github.com/rainluacgq/java/blob/master/java基础/JUC/ReentrantLock总结.md)
+2.[可重入锁ReentrantLock](https://github.com/rainluacgq/java/blob/master/java基础/JUC/ReentrantLock总结.md)   [读写锁和StampLock](https://github.com/rainluacgq/java/blob/master/java基础/JUC/读写锁和StampLock.md)
 
 原理：[AQS](https://github.com/rainluacgq/java/blob/master/java基础/JUC/AQS原理.md)
 
