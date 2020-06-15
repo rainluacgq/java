@@ -1,5 +1,11 @@
 #### concurrentHashMap总结
 
+一、ConCurrentHashMap的结构
+
+ConCurrentHashMap是由Segment数据结构和HashEntry数据结构组成。Segment是一种可重入锁，在ConCurrentHashMap中扮演锁的角色。HashEntry用于存储键值对数据。每个Segment守护一个HashEntry数组中的元素，当需要对HashEntry数组的元素进行修改时，必须首先获得对应的Segment锁。
+
+![ConCurrentHashMap的类图](https://github.com/rainluacgq/java/blob/master/java基础/JUC/pic/ConcurrentHashMap.jpg)
+
 ![image-20200503205338027](https://github.com/rainluacgq/java/blob/master/java基础/JUC/pic/image-20200503205338027.png)
 
 每个绿色的实体是嵌套类 Entry 的实例，Entry 包含四个属性：key, value, hash 值和用于单向链表的 next。
@@ -29,8 +35,6 @@ static final class Segment<K,V> extends ReentrantLock implements Serializable {
     final float loadFactor;
 }
 ```
-
-一个 ConcurrentHashMap 里包含一个 Segment 数组。Segment 的结构和HashMap类似，是一种数组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每个 Segment 守护着一个HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先获得对应的 Segment的锁。
 
 
 
