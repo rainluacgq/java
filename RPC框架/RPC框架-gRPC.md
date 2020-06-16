@@ -8,7 +8,7 @@ gRPC使用protocol buffer作为序列化和通信的接口定义语言，而不�
 
 此外，gRPC构建在HTTP/2之上，它支持双向通信以及传统的请求/响应。gRPC允许服务器和客户端之间的松散耦合。在实践中，客户端发起一个与gRPC服务器的长连接，并为每个RPC调用打开一个新的HTTP/2流。
 
-![image-20200601223141657](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200601223141657.png)
+![image-20200601223141657](https://github.com/rainluacgq/java/blob/master/RPC框架/pic/image-20200601223141657.png)
 
 **调用模型**
 
