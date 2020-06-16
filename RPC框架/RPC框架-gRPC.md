@@ -59,7 +59,7 @@ gRPC使用protocol buffer作为序列化和通信的接口定义语言，而不�
    ```protobuf
    syntax = "proto3"; //protocol buffer 协议版本
    
-   option java_package = "com.linshen.grpc.lib";
+   option java_package = "com.nation.grpc.lib";
    
    // The greeter service definition.
    service Greeter {
@@ -77,6 +77,88 @@ gRPC使用protocol buffer作为序列化和通信的接口定义语言，而不�
    }
    ```
 
+配置文件
+
+```xml
+<dependencies>
+<dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <version>${grpc.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+            <version>${grpc.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+        <dependency>
+            <!-- Java 9+ compatibility -->
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
+  </dependencies>
+<build>
+    <extensions>
+        <extension>
+            <groupId>kr.motd.maven</groupId>
+            <artifactId>os-maven-plugin</artifactId>
+            <version>1.6.2</version>
+        </extension>
+    </extensions>
+    <plugins>
+        <plugin>
+            <groupId>org.xolstice.maven.plugins</groupId>
+            <artifactId>protobuf-maven-plugin</artifactId>
+            <version>0.6.1</version>
+            <configuration>
+                <protocArtifact>com.google.protobuf:protoc:3.12.0:exe:${os.detected.classifier}</protocArtifact>
+                <pluginId>grpc-java</pluginId>
+                <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.30.0:exe:${os.detected.classifier}</pluginArtifact>
+                <!--默认值-->
+                <protoSourceRoot>${project.basedir}/src/main/proto</protoSourceRoot>
+                <!--默认值-->
+                <!--<outputDirectory>${project.build.directory}/generated-sources/protobuf/java</outputDirectory>-->
+                <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                <!--设置是否在生成java文件之前清空outputDirectory的文件，默认值为true，设置为false时也会覆盖同名文件-->
+                <clearOutputDirectory>false</clearOutputDirectory>
+                <!--更多配置信息可以查看https://www.xolstice.org/protobuf-maven-plugin/compile-mojo.html-->
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>compile</goal>
+                        <goal>compile-custom</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+参考：https://github.com/grpc/grpc-java
+
+值得注意的是，由于这里GUAVA版本依赖可能存在问题，所以需要根据MAVEN依赖自行修改
+
 2.根据proto文件生成 Grpc和outerc.class
 
 使用idea的工具能够快捷生成
@@ -85,6 +167,49 @@ gRPC使用protocol buffer作为序列化和通信的接口定义语言，而不�
 
 
 
+二、服务端配置
+
+```xml
+<dependency>
+    <groupId>net.devh</groupId>
+    <artifactId>grpc-server-spring-boot-starter</artifactId>
+</dependency>
+```
+
+配置文件：
+
+```yml
+grpc:
+  server:
+    port: 9898
+    #max-message-size: 20971520
+    maxInboundMessageSize: 20971520
+```
+
+代码
+
+```java
+/**
+ * @Desc:
+ * @Date: 2020/6/16
+ */
+@GrpcService
+public class GrpcServiceDemo  extends GreeterGrpc.GreeterImplBase{
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    @Override
+    public void sayHello(GreeterOuterClass.HelloRequest request, StreamObserver<GreeterOuterClass.HelloReply> responseObserver) {
+        String message = "Hello " + request.getName() + request.getLog().length();
+        final GreeterOuterClass.HelloReply.Builder replyBuilder = GreeterOuterClass.HelloReply.newBuilder().setMessage(message);
+        responseObserver.onNext(replyBuilder.build());
+        responseObserver.onCompleted();
+        log.info("Returning " +message);
+    }
+
+}
+```
+
 问题1：
 
 ```
@@ -92,71 +217,109 @@ io.grpc.StatusRuntimeException: CANCELLED: HTTP/2 error code: CANCEL
 Received Rst Stream
 ```
 
-修改Server配置文件，GrpcServerProperties的源码如下所示：
+先看一下源码，maxInboundMessageSize默认参数是Integer.MAX_VALUE，修改Server配置参数maxInboundMessageSize：
 
 ```java
+//设置参数方法
+public void setMaxInboundMessageSize(final DataSize maxInboundMessageSize) {
+        if (maxInboundMessageSize == null || maxInboundMessageSize.toBytes() >= 0) {
+            this.maxInboundMessageSize = maxInboundMessageSize;
+        } else if (maxInboundMessageSize.toBytes() == -1) {
+            this.maxInboundMessageSize = DataSize.ofBytes(Integer.MAX_VALUE);
+        } else {
+            throw new IllegalArgumentException("Unsupported maxInboundMessageSize: " + maxInboundMessageSize);
+        }
+    }
+
 @Data
 @ConfigurationProperties("grpc.server")
+@SuppressWarnings("javadoc")
 public class GrpcServerProperties {
-    /**
-     * Server port to listen on. Defaults to 9090.
-     */
-    private int port = 9090;
+    //省略若干代码
+    @DataSizeUnit(DataUnit.BYTES)
+    private DataSize maxInboundMessageSize = null;
 
-    /**
-     * Bind address for the server. Defaults to 0.0.0.0.
-     */
-    private String address = "0.0.0.0";
-    
-    /**
-     * The maximum message size allowed to be received for the server.
-     */
-    private int maxMessageSize;
-
-    /**
-     * Security options for transport security. Defaults to disabled. 
-     */
-    private final Security security = new Security();
-
-    @Data
-    public static class Security {
-
-        /**
-         * Flag that controls whether transport security is used
-         */
-        private Boolean enabled = false;
-
-        /**
-         * Path to SSL certificate chain
-         */
-        private String certificateChainPath = "";
-
-        /**
-         * Path to SSL certificate
-         */
-        private String certificatePath = "";
-
-    }
-
-    public int getPort() {
-        if (this.port == 0) {
-            this.port = SocketUtils.findAvailableTcpPort();
-        }
-        return this.port;
-    }
 }
 ```
-
-修改application.xml文件如下所示：
 
 ```yaml
 grpc:
   server:
     port: 9898
-    maxMessageSize: 20971520 #表示允许的最大传输大小是20M（该数字大小是byte）
+    maxInboundMessageSize: 20971520
 ```
 
+三、客户端
 
+pom依赖
+
+```xml
+<dependency>
+    <groupId>net.devh</groupId>
+    <artifactId>grpc-client-spring-boot-starter</artifactId>
+</dependency>
+```
+
+配置：
+
+```yml
+grpc:
+  client:
+    local-grpc-server:
+      address: 'static://127.0.0.1:9898'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext ##如果没有该配置，会检查TLS，也会报错
+      maxInBoundMessageSize: 20971520
+```
+
+代码
+
+```java
+/**
+ * @Desc:
+ * @Date: 2020/6/16
+ */
+@Service
+public class GrpcTestService {
+    @GrpcClient("local-grpc-server")
+    private GreeterGrpc.GreeterBlockingStub myServiceStub;
+
+    public String receiveGreeting(String name) throws IOException {
+        GreeterOuterClass.HelloRequest request = GreeterOuterClass.HelloRequest.newBuilder()
+                .setName(log)
+                .build();
+        return myServiceStub.sayHello(request).getMessage();
+    }
+}
+```
+
+看一下为啥这么配置
+
+```java
+private NegotiationType negotiationType;
+private static final NegotiationType DEFAULT_NEGOTIATION_TYPE = NegotiationType.TLS;
+/* 以下是NegotiationType的含义*/
+public enum NegotiationType {
+
+    /**
+     * Uses TLS ALPN/NPN negotiation, assumes an SSL connection.
+     */
+    TLS,
+
+    /**
+     * Use the HTTP UPGRADE protocol for a plaintext (non-SSL) upgrade from HTTP/1.1 to HTTP/2.
+     */
+    PLAINTEXT_UPGRADE,
+
+    /**
+     * Just assume the connection is plaintext (non-SSL) and the remote endpoint supports HTTP/2 directly without an
+     * upgrade.
+     */
+    PLAINTEXT;
+
+}
+```
 
 参考：
 
