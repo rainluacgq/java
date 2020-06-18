@@ -100,7 +100,9 @@
 
 **Redis**
 
-[redis总结](https://github.com/rainluacgq/java/blob/master/redis总结/redis总结.md)
+[redis基础总结](https://github.com/rainluacgq/java/blob/master/redis总结/redis总结.md)
+
+[redis集群搭建](https://github.com/rainluacgq/java/blob/master/redis总结/redis集群搭建.md)
 
 ### 消息队列
 

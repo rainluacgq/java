@@ -45,13 +45,13 @@ redis-server ./redis-slave.conf
 
 主redis运行在6380端口
 
-![image-20200617202446030](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200617202446030.png)
+![image-20200617202446030](https://github.com/rainluacgq/java/tree/master/redis总结/pic/image-20200617202446030.png)
 
 从resis运行在6381端口
 
 
 
-![image-20200617202550342](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200617202550342.png)
+![image-20200617202550342](https://github.com/rainluacgq/java/tree/master/redis总结/pic/image-20200617202550342.png)
 
 
 
@@ -66,21 +66,21 @@ sentinel monitor mymaster 127.0.0.1 6380 1
 
 如果哨兵启动成功可以看到如下日志：
 
-![image-20200618195550340](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200618195550340.png)
+![image-20200618195550340](https://github.com/rainluacgq/java/tree/master/redis总结/pic/image-20200618195550340.png)
 
 当关闭掉主数据时
 
-![image-20200618201352987](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200618201352987.png)
+![image-20200618201352987](https://github.com/rainluacgq/java/tree/master/redis总结/pic/image-20200618201352987.png)
 
 可见原来的从库6382已经变成主库，其从库是6381
 
-![image-20200618201418714](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200618201418714.png)
+![image-20200618201418714](https://github.com/rainluacgq/java/tree/master/redis总结/pic/image-20200618201418714.png)
 
 可能遇到的问题
 
 当关闭主库时，主从无法切换并报错误
 
-![image-20200618201607368](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200618201607368.png)
+![image-20200618201607368](https://github.com/rainluacgq/java/tree/master/redis总结/pic/image-20200618201607368.png)
 
 修改sentinel的配置文件，关闭保护模式：
 
