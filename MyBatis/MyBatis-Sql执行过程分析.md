@@ -97,9 +97,7 @@ MapperProxyFactory 会生成代理对象，这个对象就是 MapperProxy，最�
 
 首先先从 Executor 的继承体系来认识一下
 
-
-
-![img](https://user-gold-cdn.xitu.io/2020/2/1/16fff3cd3a49a3f0?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image-20200619221140503](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200619221140503.png)
 
 
 
@@ -180,7 +178,7 @@ MyBatis 只有一个默认的实现类就是 `DefaultResultSetHandler`，Default
 
 按照 Mapper 文件中配置的 ResultType 或 ResultMap 来封装成对应的对象，最后将封装的对象返回即可。
 
-```
+```java
 public List<Object> handleResultSets(Statement stmt) throws SQLException {
   ErrorContext.instance().activity("handling results").object(mappedStatement.getId());
 
@@ -225,7 +223,6 @@ public List<Object> handleResultSets(Statement stmt) throws SQLException {
 
   return collapseSingleResultList(multipleResults);
 }
-复制代码
 ```
 
 其中涉及的主要对象有：

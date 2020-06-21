@@ -111,3 +111,10 @@
 [计算机网络总结.md](https://github.com/rainluacgq/java/blob/master/计算机网络/计算机网络总结.md)
 
 [排序、查找算法](https://github.com/rainluacgq/java/tree/master/排序、查找算法)
+
+### 优质学习资源
+
+[优质资源推荐](https://github.com/rainluacgq/java/blob/master/学习资源/java优质资源推荐.md)
+
+
+
