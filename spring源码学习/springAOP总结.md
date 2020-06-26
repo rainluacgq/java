@@ -1,10 +1,12 @@
 ###  `spring AOP`总结
 
-底层原理
+### 总结
 
-动态代理 
+AOP：Aspect Oriented Programming，中文翻译为”面向切面编程“。面向切面编程是一种编程范式，它作为OOP面向对象编程的一种补充，用于处理系统中分布于各个模块的横切关注点，比如事务管理、权限控制、缓存控制、日志打印等等。AOP采取横向抽取机制，取代了传统纵向继承体系的重复性代码
 
-JDK动态代理 cgLib动态代理
+### 原理
+
+Spring 提供了两种方式来生成代理对象: JDKProxy 和 Cglib，具体使用哪种方式 生成由AopProxyFactory 根据 AdvisedSupport 对象的配置来决定。 默认的策略是如果目标类是接口，则使用 JDK 动态代理技术，否则使用 Cglib 来生成代理  
 
 `DefaultAopProxyFactory.java`中可见
 
@@ -27,13 +29,10 @@ public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException 
 }
 ```
 
+#####  1.JDK动态代理
 
-
-
-
-JDK动态代理
-
-动态代理实现主要是实现InvocationHandler，并且将目标对象注入到代理对象中，利用反射机制来执行目标对象的方法。
+JDK 动态代理主要涉及到 java.lang.reflect 包中的两个类： Proxy 和 InvocationHandler。InvocationHandler 是一个接口，通过实现该接口定义横切逻辑，并通过反射机制调用目标类的代码，动态将横切逻辑和业务逻辑编制在一起。 Proxy 利用 InvocationHandler 动态创建
+一个符合某一接口的实例，生成目标类的代理对象。  
 
 ```java
 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -124,17 +123,14 @@ public Object invoke(Object proxy, Method method, Object[] args) throws Throwabl
 }
 ```
 
-
-
-
-
-cglib
+#### 2.CGLib 动态代理
+ CGLib 全称为 Code Generation Library，是一个强大的高性能， 高质量的代码生成类库，可以在运行期扩展 Java 类与实现 Java 接口， CGLib 封装了 asm，可以再运行期动态生成新的 class。和 JDK 动态代理相比较： JDK 创建代理有一个限制，就是只能为接口创建代理实例，而对于没有通过接口定义业务方法的类，则可以通过 CGLib 创建动态代理。  
 
 原理：利用`asm`开源包，对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。
 
-使用`cglib[Code Generation Library]`实现动态代理，并不要求委托类必须实现接口，底层采用asm字节码生成框架生成代理类的字节码,说白了就是 java->class然后class->java的过程。
+使用`cglib[Code Generation Library]`实现动态代理，可以在运行期扩展 Java 类与实现 Java 接口  ，并不要求委托类必须实现接口，底层采用asm字节码生成框架生成代理类的字节码,说白了就是 java->class然后class->java的过程。
 
-
+参考： https://www.pdai.tech/md/spring/spring-aop.html
 
 
 

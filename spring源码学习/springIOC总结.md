@@ -148,7 +148,13 @@ public void refresh() throws BeansException, IllegalStateException {
 
 ![image-20200510165854980](https://github.com/rainluacgq/java/blob/master/spring%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/pic/image-20200510165854980.png)
 
-参考：https://blog.csdn.net/nuomizhende45/article/details/81158383
+参考：
+
+https://blog.csdn.net/nuomizhende45/article/details/81158383
+
+https://www.jianshu.com/p/17b66e6390fd
+
+https://blog.csdn.net/nuomizhende45/article/details/81158383
 
 
 

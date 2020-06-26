@@ -74,7 +74,24 @@
 </dependency>
 ```
 
+创建数据库
 
+```sql
+CREATE TABLE `msg_log` (
+  `msg_id` varchar(255) NOT NULL DEFAULT '' COMMENT '消息唯一标识',
+  `msg` text COMMENT '消息体, json格式化',
+  `exchange` varchar(255) NOT NULL DEFAULT '' COMMENT '交换机',
+  `routing_key` varchar(255) NOT NULL DEFAULT '' COMMENT '路由键',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态: 0投递中 1投递成功 2投递失败 3已消费',
+  `try_count` int(11) NOT NULL DEFAULT '0' COMMENT '重试次数',
+  `next_try_time` datetime DEFAULT NULL COMMENT '下一次重试时间',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',2
+     21、
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`msg_id`),
+  UNIQUE KEY `unq_msg_id` (`msg_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='消息投递日志';
+```
 
 配置
 
@@ -166,24 +183,11 @@ public class RabbitConfig {
         return new Jackson2JsonMessageConverter();
     }
 
-    // 登录日志
-    public static final String LOGIN_LOG_QUEUE_NAME = "login.log.queue";
-    public static final String LOGIN_LOG_EXCHANGE_NAME = "login.log.exchange";
-    public static final String LOGIN_LOG_ROUTING_KEY_NAME = "login.log.routing.key";
-
-
-    @Bean
-    public DirectExchange logUserExchange() {
-        return new DirectExchange(LOGIN_LOG_EXCHANGE_NAME, true, false);
-    }
-
-
 
     // 发送邮件
     public static final String MAIL_QUEUE_NAME = "mail.queue";
     public static final String MAIL_EXCHANGE_NAME = "mail.exchange";
     public static final String MAIL_ROUTING_KEY_NAME = "mail.routing.key";
-
 
 
     @Bean
@@ -241,7 +245,19 @@ public class PublishMessageServiceImpl implements PublishMessageService {
 }
 ```
 
+看一下message如何生成：
+
+```
+Message message = MessageBuilder.withBody(JsonUtil.objToStr(obj).getBytes()).build();
+message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);// 消息持久化
+message.getMessageProperties().setContentType(MessageProperties.CONTENT_TYPE_JSON);
+```
+
 消费者
+
+对于来自队列的消息，手动ack确认消息消费，如没有手动ack，则队列中会一直存在uack的消息。
+
+![image-20200626154522946](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200626154522946.png)
 
 ```java
 @Component
@@ -278,6 +294,31 @@ public class SimpleMailConsumer {
         }
     }
 }
+```
+
+核心ack方法含义：
+
+```
+void basicAck(long deliveryTag, boolean multiple) throws IOException;
+deliveryTag:该消息的index 
+multiple：是否批量.  true:将一次性ack所有小于deliveryTag的消息。 false:只消费当前deliveryTag消息
+
+void basicNack(long deliveryTag, boolean multiple, boolean requeue)
+deliveryTag:该消息的index
+multiple：是否批量.true:将一次性拒绝所有小于deliveryTag的消息。 
+requeue：被拒绝的是否重新入队列
+
+channel.basicNack 拒绝消息(可以批量) 是否重发或者拒绝
+void basicNack(long deliveryTag, boolean multiple, boolean requeue)
+deliveryTag:该消息的index
+multiple：是否批量.true:将一次性拒绝所有小于deliveryTag的消息。 
+requeue：被拒绝的是否重新入队列
+
+channel.basicReject() 拒绝当前消息
+oid basicReject(long deliveryTag, boolean requeue) throws IOException;
+deliveryTag:该消息的index
+requeue：被拒绝的是否重新入队列
+channel.basicNack 与 channel.basicReject 的区别在于basicNack可以拒绝多条消息，而basicReject一次只能拒绝一条消息
 ```
 
 定时扫描发送异常的消息，重新发送
