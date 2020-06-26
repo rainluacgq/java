@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  rabbitmq:
+    port: 5672
+    host: localhost
+    virtual-host: /
+    username: guest
+    password: guest
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 100
+  mail:
+    host: smtp.163.com
+    username: 00000@163.com
+    password: 0000
+    from: 000@163.com
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
