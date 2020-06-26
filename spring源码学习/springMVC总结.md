@@ -17,33 +17,33 @@ Spring 的模型-视图-控制器（MVC）框架是围绕一个 DispatcherServle
 
 先来看一下SpringMVC的初始化过程：
 
- ![image-20200626215342097](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200626215342097.png)
+ ![image-20200626215342097](https://github.com/rainluacgq/java/blob/master/spring源码学习/pic/image-20200626215342097.png)
 
 **SpringMVC的流程是什么？**
 
-\1. 用户发送请求至前端控制器DispatcherServlet；
+1. 用户发送请求至前端控制器DispatcherServlet；
 
-\2. DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handle；
+2. DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handle；
 
-\3. 处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器(如果有)一并返回给DispatcherServlet；
+3. 处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器(如果有)一并返回给DispatcherServlet；
 
-\4. DispatcherServlet 调用 HandlerAdapter处理器适配器；
+4. DispatcherServlet 调用 HandlerAdapter处理器适配器；
 
-\5. HandlerAdapter 经过适配调用 具体处理器(Handler，也叫后端控制器)；
+5. HandlerAdapter 经过适配调用 具体处理器(Handler，也叫后端控制器)；
 
-\6. Handler执行完成返回ModelAndView；
+6. Handler执行完成返回ModelAndView；
 
-\7. HandlerAdapter将Handler执行结果ModelAndView返回给DispatcherServlet；
+7. HandlerAdapter将Handler执行结果ModelAndView返回给DispatcherServlet；
 
-\8. DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析；
+8. DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析；
 
-\9. ViewResolver解析后返回具体View；
+9. ViewResolver解析后返回具体View；
 
-\10. DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）
+10. DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）
 
-\11. DispatcherServlet响应用户。
+11. DispatcherServlet响应用户。
 
-![image-20200626220133375](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200626220133375.png)
+![image-20200626220133375](https://github.com/rainluacgq/java/blob/master/spring源码学习/pic/image-20200626220133375.png)
 
 参考：https://mp.weixin.qq.com/s/rFKcHpyzaITMzYhM3ob1sA
 
