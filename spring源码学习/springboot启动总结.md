@@ -2,7 +2,7 @@
 
 #### springboot 启动流程总结
 
-`run`方法，执行`SpringApplication`构造方法
+(1)`run`方法，执行`SpringApplication`构造方法，实例化一个SpringApplication对象，调用的是有参构造函数
 
 ```java
 public static ConfigurableApplicationContext run(Class<?>[] primarySources,
@@ -11,7 +11,17 @@ public static ConfigurableApplicationContext run(Class<?>[] primarySources,
 	}
 ```
 
-初始化、为`spring`赋初值
+在`SpringApplication`实例初始化的时候，会提前完成几件事：
+
+- 根据classpath里面是否存在某个特征类（Servlet，ConfigurableWebApplicationContext）是否应该创建一个供web应用使用的ApplicationContext类型
+
+  ```java
+  private static final String[] WEB_ENVIRONMENT_CLASSES = new String[]{"javax.servlet.Servlet", "org.springframework.web.context.ConfigurableWebApplicationContext"};
+  ```
+
+- 使用SpringFactories在应用的classpath查找并加载所有可用的ApplicationContextInitializer
+
+- 使用SpringFactories在应用的classpath查找并加载所有可用的ApplicationContexListener。初始化以上的配置后，设置main方法的定义类。
 
 ```java
 public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {
@@ -26,10 +36,110 @@ public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySourc
 }
 ```
 
-`run` 方法
+(2) SpringApplication实例初始化完成设置后，开始执行run方法，首先遍历执行SpringFactoriesLoader查找并加载SpringApplicationRunListeners，调用starting（）方法
+
+(3)准备并配置当前SpringBoot应用程序使用的Environment（包括PropertySources,Profiles）
 
 ```java
+protected void configureEnvironment(ConfigurableEnvironment environment,
+      String[] args) {
+   if (this.addConversionService) {
+      ConversionService conversionService = ApplicationConversionService
+            .getSharedInstance();
+      environment.setConversionService(
+            (ConfigurableConversionService) conversionService);
+   }
+   configurePropertySources(environment, args);
+   configureProfiles(environment, args);
+}
+```
 
+（4）遍历执行所有的SpringApplicationRunListeners的prepareEnvironment方法，比如创建ApplicationContext
+
+（5）判断SpringApplication的bannerMode，是CONSOLE则输出banner到System.out，是OFF则不打印，是LOG则输出到日志文件中
+
+（6）判断是否设置applicationContextClass属性，如果有，则实例化该class，如果没有，则判断是否是web环境，如果是DEFAULT_SERVLET_WEB_CONTEXT_CLASS,则实例化该常量所对应的AnnotationConfigEmbedApplicationContext类，否则实例化DEFAULT_CONTEXT_CLASS
+
+```java
+public static final String DEFAULT_CONTEXT_CLASS = "org.springframework.context."
+      + "annotation.AnnotationConfigApplicationContext";
+public static final String DEFAULT_SERVLET_WEB_CONTEXT_CLASS = "org.springframework.boot."
+			+ "web.servlet.context.AnnotationConfigServletWebServerApplicationContext";
+```
+
+（7）将之前准备好的environment配置给当前的ApplicationContext
+
+```java
+private void prepareContext(ConfigurableApplicationContext context,
+      ConfigurableEnvironment environment, SpringApplicationRunListeners listeners,
+      ApplicationArguments applicationArguments, Banner printedBanner) {
+   context.setEnvironment(environment);
+   postProcessApplicationContext(context);
+   applyInitializers(context);
+   listeners.contextPrepared(context);
+   if (this.logStartupInfo) {
+      logStartupInfo(context.getParent() == null);
+      logStartupProfileInfo(context);
+   }
+   // Add boot specific singleton beans
+   ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
+   beanFactory.registerSingleton("springApplicationArguments", applicationArguments);
+   if (printedBanner != null) {
+      beanFactory.registerSingleton("springBootBanner", printedBanner);
+   }
+   if (beanFactory instanceof DefaultListableBeanFactory) {
+      ((DefaultListableBeanFactory) beanFactory)
+            .setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
+   }
+   // Load the sources
+   Set<Object> sources = getAllSources();
+   Assert.notEmpty(sources, "Sources must not be empty");
+   load(context, sources.toArray(new Object[0]));
+   listeners.contextLoaded(context);
+}
+```
+
+（8）将beanNameGenerator,resourceLoader配置给当前的ApplicationContext
+
+```java
+	protected void postProcessApplicationContext(ConfigurableApplicationContext context) {
+		if (this.beanNameGenerator != null) {
+			context.getBeanFactory().registerSingleton(
+					AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR,
+					this.beanNameGenerator);
+		}
+		if (this.resourceLoader != null) {
+			if (context instanceof GenericApplicationContext) {
+				((GenericApplicationContext) context)
+						.setResourceLoader(this.resourceLoader);
+			}
+			if (context instanceof DefaultResourceLoader) {
+				((DefaultResourceLoader) context)
+						.setClassLoader(this.resourceLoader.getClassLoader());
+			}
+		}
+		if (this.addConversionService) {
+			context.getBeanFactory().setConversionService(
+					ApplicationConversionService.getSharedInstance());
+		}
+	}
+```
+
+(9)创建好ApplicationContext之后，ApplicationApplication会通过SpringFactoriesLoader查找classpath中所有可用的ApplicationContextInitializer，遍历并加载这些ApplicationContextInitializer的initialize（context）方法对当前的ApplicationContext做进一步的处理
+
+（10）遍历执行所有的SpringApplicationRunListener的ContextPrepared（）方法
+
+（11）为BeanDefinitionLoader配置beanNameGenerator,resourceLoader，environment，并加载classpath之前通过@EnableAutoConfiguration获取的所有配置，以及其余IOC容器配置到当前已准备完毕的ApplicationContext
+
+（12）遍历执行所有的SpringApplicationRunListener的ContextLoaded（）方法
+
+（13）调用ApplicationContext的refresh（）方法，完成IOC容器可用的最后工序，并未RunTime.getRunTime添加ShutdownHook以便在JVM停止时优雅的退出
+
+（14）查找当前ApplicationConText是否注册ApplicationRunner或者CommandLineRunner，如果是，则遍历执行他们
+
+（15）遍历执行SpringApplicationRunListener的finish（）方法
+
+```java
 public ConfigurableApplicationContext run(String... args) {
    StopWatch stopWatch = new StopWatch();
    stopWatch.start();

@@ -66,7 +66,7 @@
 
 [springboot启动总结](https://github.com/rainluacgq/java/blob/master/spring源码学习/springboot启动总结.md)
 
-[springboot注解总结](https://github.com/rainluacgq/java/blob/master/spring源码学习/springboot注解总结.md)
+[springboot自动配置总结](https://github.com/rainluacgq/java/blob/master/spring源码学习/springboot自动配置总结.md)
 
 [springSecurity总结](https://github.com/rainluacgq/java/blob/master/spring源码学习/springSecurity总结.md)
 
