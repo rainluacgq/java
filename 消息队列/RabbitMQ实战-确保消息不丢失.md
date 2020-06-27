@@ -131,6 +131,10 @@ publisher-returns Exchange -> Queue 开启returnedMessage回调
 publisher-confirms=true 开启confirms回调 P -> Exchange
 acknowledge-mode: manual 手动ack Queue -> C，默认是auto
 prefetch: 100 一次从broker中取的消息个数
+# 开启重试 如果不开启会一直发送
+spring.rabbitmq.listener.simple.retry.enabled=true
+# 重试次数,默认为3次
+spring.rabbitmq.listener.simple.retry.max-attempts=5
 ```
 
 代码代码

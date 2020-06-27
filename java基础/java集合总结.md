@@ -124,6 +124,8 @@ private void grow(int minCapacity) {
 
 LinkedHashMap
 
+![image-20200627104021897](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200627104021897.png)
+
 基于linkedHashMap实现的LRU cache
 
 ```java
@@ -170,3 +172,4 @@ final void checkForComodification() {
 采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。所以，在遍历过程中对原集合所作的修改并不能被迭代器检测到，故不会抛 `ConcurrentModificationException` 异常
 
 参考：[java集合概览](https://snailclimb.gitee.io/javaguide/#/docs/java/collection/Java集合框架常见面试题?id=java-集合概览)
+
