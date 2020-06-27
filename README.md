@@ -6,7 +6,7 @@
 
 **java基础**
 
-1.[hashmap 知识总结](https://github.com/rainluacgq/java/blob/master/java基础/hashmap总结.md)
+1.[java集合总结](https://github.com/rainluacgq/java/blob/master/java基础/java集合总结.md)   [hashmap 知识总结](https://github.com/rainluacgq/java/blob/master/java基础/hashmap总结.md)
 
 2.[反射总结](https://github.com/rainluacgq/java/blob/master/java基础/java反射总结.md)
 
@@ -108,7 +108,11 @@
 
 ### 消息队列
 
+[消息队列如何确保消息不丢失](https://github.com/rainluacgq/java/blob/master/消息队列/如何保证消息不丢失.md)
+
 [kafka总结](https://github.com/rainluacgq/java/blob/master/消息队列/kafka总结.md)
+
+[RabbitMQ总结](https://github.com/rainluacgq/java/blob/master/消息队列/RabbitMQ总结.md)    [RabbitMQ实战-保证消息不丢失](https://github.com/rainluacgq/java/blob/master/消息队列/RabbitMQ实战-确保消息不丢失.md)
 
 [计算机网络总结.md](https://github.com/rainluacgq/java/blob/master/计算机网络/计算机网络总结.md)
 
