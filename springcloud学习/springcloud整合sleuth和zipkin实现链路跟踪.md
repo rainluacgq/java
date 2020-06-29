@@ -10,7 +10,7 @@
 
 - 为了统计各处理单元的时间延迟，当请求到达各个服务组件时，也通过一个唯一标识来标记他的开始、具体过程以及结束，即SPAN ID。
 
-  ![image-20200629193126286](https://github.com/rainluacgq/java/blob/master/springcloud学习/image-20200629193126286.png)
+  ![image-20200629193126286](https://github.com/rainluacgq/java/blob/master/springcloud学习/pic/image-20200629193126286.png)
 
 
 
