@@ -10,7 +10,7 @@
 
 - 为了统计各处理单元的时间延迟，当请求到达各个服务组件时，也通过一个唯一标识来标记他的开始、具体过程以及结束，即SPAN ID。
 
-  ![image-20200629193126286](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200629193126286.png)
+  ![image-20200629193126286](https://github.com/rainluacgq/java/blob/master/springcloud学习/image-20200629193126286.png)
 
 
 
@@ -32,7 +32,7 @@ java -DKAFKA_ZOOKEEPER=localhost:2181 -DSTORAGE_TYPE=elasticsearch  -DES_HOSTS=h
 
 - Zipkin页面访问地址：[http://localhost:9411](http://localhost:9411/)
 
-  ![image-20200629194124444](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200629194124444.png)
+  ![image-20200629194124444](https://github.com/rainluacgq/java/blob/master/springcloud学习/pic/image-20200629194124444.png)
 
 ### kafka环境搭建
 
@@ -98,4 +98,4 @@ zipkin:
 
 搭建成功可实现如下效果：
 
-![image-20200629194629314](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200629194629314.png)
+![image-20200629194629314](https://github.com/rainluacgq/java/blob/master/springcloud学习/image-20200629194629314.png)

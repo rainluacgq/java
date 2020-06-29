@@ -84,6 +84,8 @@
 
 [集成hystrix和Ribbon的openfeign](https://github.com/rainluacgq/java/blob/master/springcloud学习/openfeign.md)
 
+[springcloud 整合sleuth和zipkin实现日志收集](https://github.com/rainluacgq/java/blob/master/springcloud学习/springcloud整合sleuth和zipkin实现链路跟踪.md)
+
 ### 四、数据库
 
 [mysql基础概念总结](https://github.com/rainluacgq/java/blob/master/数据库/mysql概念总结.md)
