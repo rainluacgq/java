@@ -98,4 +98,4 @@ zipkin:
 
 搭建成功可实现如下效果：
 
-![image-20200629194629314](https://github.com/rainluacgq/java/blob/master/springcloud学习/image-20200629194629314.png)
+![image-20200629194629314](https://github.com/rainluacgq/java/blob/master/springcloud学习/pic/image-20200629194629314.png)
