@@ -1,59 +1,41 @@
-### OpenFeign笔记
+### 集成Ribbon和Hystrix的OpenFeign
 
-1.pom.xml配置
+### 概念一览
+
+Feign是声明式的服务调用工具，我们只需创建一个接口并用注解的方式来配置它，就可以实现对某个服务接口的调用，简化了直接使用RestTemplate来调用服务接口的开发量。Feign具备可插拔的注解支持，同时支持Feign注解、JAX-RS注解及SpringMvc注解。当使用Feign时，Spring Cloud集成了Ribbon和Eureka以提供负载均衡的服务调用及基于Hystrix的服务容错保护功能。
+
+### 实战
+
+加入依赖
 
 ```xml
 <dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-</dependency>
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-</dependency>
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-</dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
 ```
-
-2.启用eureka
+集成hystrix进行服务降级
 
 ```java
-@EnableEurekaClient
-@SpringBootApplication
-public class DemoApplication {
-   public static void main(String[] args) {
-      SpringApplication.run(DemoApplication.class, args);
-   }
+feign:
+  hystrix:
+    enabled: true
+```
+
+修改@FeignClient注解中的参数，设置fallback为FallbackService.class即可。
+
+```java
+@FeignClient(value = "test",fallback = FeignFallBackService.class)
+public interface FeignTestService {
+	/*code */
 }
 ```
 
-3.配置文件
+实现降级代码
 
-```yaml
-server:
-  port: 8101 #运行端口号
-spring:
-  application:
-    name: eureka-client #服务名称
-eureka:
-  client:
-    register-with-eureka: true #注册到Eureka的注册中心
-    fetch-registry: true #获取注册实例列表
-    service-url:
-      defaultZone: http://localhost:8001/eureka/ #配置注册中心地址
-
+```java
+@Service
+public class FeignFallBackService implements FeignTestService{
+	/*code*/
+}
 ```
-
-4.运行后访问http://localhost:8001/ 看到注册中心界面
-
-![image-20200512113739056](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200512113739056.png)
-
-
-
-### 二、错误
-
-![image-20200512111404766](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200512111404766.png)
-
-未添加start-web
