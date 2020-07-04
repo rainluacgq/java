@@ -92,9 +92,15 @@
 
 [mysql主从复制及常见问题](https://github.com/rainluacgq/java/blob/master/数据库/mysql主从复制及常见问题总结.md)
 
-[mysql性能调优总结](https://github.com/rainluacgq/java/blob/master/数据库/mysql性能调优.md)
+[mysql性能调优总结](https://github.com/rainluacgq/java/blob/master/数据库/mysql性能调优.md)       [性能调优实战](https://github.com/rainluacgq/java/blob/master/数据库/mysql性能调优实战.md)
 
 ### 其他
+
+**分布式**
+
+[分布式事务中间件-seata](https://github.com/rainluacgq/java/blob/master/分布式/springcloud整合seata实现分布式事务管理.md)
+
+[事务中间件-mycat等](https://github.com/rainluacgq/java/blob/master/数据库/分布式数据库中间件.md)
 
 **RPC**
 
