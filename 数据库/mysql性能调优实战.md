@@ -174,7 +174,7 @@ distinct
 SHOW VARIABLES LIKE '%query%'
 ```
 
-![image-20200702104518134](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200702104518134.png)
+![image-20200702104518134](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200702104518134.png)
 
 开启慢查询：
 
@@ -197,7 +197,7 @@ long_query_time = 1
 
 查看是否设置成功：
 
-![](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200702111836798.png)
+![](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200702111836798.png)
 
 查看慢日志：
 
@@ -217,20 +217,20 @@ SET timestamp=1593660521;
 select count(*) from mp_nand_info
 ```
 
-![image-20200702135643928](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200702135643928.png)
+![image-20200702135643928](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200702135643928.png)
 
 select count(*)是mysql默认支持的查询语句，会自行进行优化，可以看到使用了索引。
 
 发现走的是全表
 
-![image-20200702134803620](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200702134803620.png)
+![image-20200702134803620](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200702134803620.png)
 
-![image-20200702135118515](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200702135118515.png)
+![image-20200702135118515](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200702135118515.png)
 
 对commit字段新建索引
 
-![image-20200702135158362](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200702135158362.png)
+![image-20200702135158362](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200702135158362.png)
 
 查询速度明显提升：
 
-![image-20200702135243259](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200702135243259.png)
+![image-20200702135243259](https://github.com/rainluacgq/java/blob/master/数据库/pic/image-20200702135243259.png)
