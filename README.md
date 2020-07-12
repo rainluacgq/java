@@ -30,7 +30,9 @@
 
 4.[concurrentHashMap总结](https://github.com/rainluacgq/java/blob/master/java基础/JUC/concurrentHashMap总结.md)
 
-5.[几种常见的线程池](https://github.com/rainluacgq/java/blob/master/java基础/JUC/线程池.md)
+5.[阻塞队列总结](https://github.com/rainluacgq/java/blob/master/java基础/JUC/阻塞队列.md)
+
+6.[几种常见的线程池](https://github.com/rainluacgq/java/blob/master/java基础/JUC/线程池.md)
 
 ### 并发与锁
 
