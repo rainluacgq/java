@@ -140,7 +140,7 @@ public LengthFieldBasedFrameDecoder(
 
 2.**ChannelOutboundHandler出站处理器**
 
-![chanelOutBand](G:\java\git\java\计算机网络\pic\chanelOutBand.jpg)
+![chanelOutBand](https://github.com/rainluacgq/java/blob/master/计算机网络/pic/chanelOutBand.jpg)
 
 1. 端口绑定 bind。
 
