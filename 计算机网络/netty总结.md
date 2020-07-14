@@ -86,7 +86,43 @@ ChannelHandler 本身并没有提供很多方法，因为这个接口有许多�
 
 在 Netty 中每个 Channel 都有且仅有一个 ChannelPipeline 与之对应。
 
+### 三、实战
 
+### 1.TCP沾包分包
+
+通过LengthFieldBasedFrameDecoder解码器实现：
+
+```java
+ph.addLast(new LengthFieldBasedFrameDecoder(ByteOrder.LITTLE_ENDIAN,65536,0,
+        4,0,4,true));
+
+public LengthFieldBasedFrameDecoder(
+            ByteOrder byteOrder, int maxFrameLength, int lengthFieldOffset, int lengthFieldLength,
+            int lengthAdjustment, int initialBytesToStrip, boolean failFast)
+```
+
+关键参数的含义：
+
+1. maxFrameLength - 发送的数据帧最大长度
+
+2. lengthFieldOffset - 定义长度域位于发送的字节数组中的下标。换句话说：发送的字节数组中下标为${lengthFieldOffset}的地方是长度域的开始地方
+
+3. lengthFieldLength - 用于描述定义的长度域的长度。换句话说：发送字节数组bytes时, 字节数组bytes[lengthFieldOffset, lengthFieldOffset+lengthFieldLength]域对应于的定义长度域部分
+
+4. lengthAdjustment - 满足公式: 发送的字节数组bytes.length - lengthFieldLength = bytes[lengthFieldOffset, lengthFieldOffset+lengthFieldLength] + lengthFieldOffset + lengthAdjustment 
+
+5. initialBytesToStrip - 接收到的发送数据包，去除前initialBytesToStrip位
+
+6. failFast - true: 读取到长度域超过maxFrameLength，就抛出一个 TooLongFrameException。false: 只有真正读取完长度域的值表示的字节之后，才会抛出 TooLongFrameException，默认情况下设置为true，建议不要修改，否则可能会造成内存溢
+7. ByteOrder - 数据存储采用大端模式或小端模式
+
+### 源码学习
+
+1. Handler 业务处理器
+
+![image-20200708163223148](https://github.com/rainluacgq/java/blob/master/计算机网络/pic/image-20200708163223148.png)
+
+重要的方法：
 
 - 参考：https://mp.weixin.qq.com/s/csslzxEGTRX1WnK5Qp8jWQ
 
