@@ -120,9 +120,43 @@ public LengthFieldBasedFrameDecoder(
 
 1. Handler 业务处理器
 
+   当Java NIO事件进站到Channel时，产生一的一系列事件将由ChannelHandler所对应的API处理。
+
 ![image-20200708163223148](https://github.com/rainluacgq/java/blob/master/计算机网络/pic/image-20200708163223148.png)
 
-重要的方法：
+1. 注册事件 fireChannelRegistered。
+
+2. 连接建立事件 fireChannelActive。
+
+3. 读事件和读完成事件 fireChannelRead、fireChannelReadComplete。
+
+4. 异常通知事件 fireExceptionCaught。
+
+5. 用户自定义事件 fireUserEventTriggered。
+
+6. Channel 可写状态变化事件 fireChannelWritabilityChanged。
+
+7. 连接关闭事件 fireChannelInactive。
+
+2.**ChannelOutboundHandler出站处理器**
+
+![chanelOutBand](G:\java\git\java\计算机网络\pic\chanelOutBand.jpg)
+
+1. 端口绑定 bind。
+
+2. 连接服务端 connect。
+
+3. 写事件 write。
+
+4. 刷新时间 flush。
+
+5. 读事件 read。
+
+6. 主动断开连接 disconnect。
+
+7. 关闭 channel 事件 close。
+
+
 
 - 参考：https://mp.weixin.qq.com/s/csslzxEGTRX1WnK5Qp8jWQ
 
