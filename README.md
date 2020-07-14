@@ -120,7 +120,7 @@
 
 [消息队列如何确保消息不丢失](https://github.com/rainluacgq/java/blob/master/消息队列/如何保证消息不丢失.md)
 
-[kafka总结](https://github.com/rainluacgq/java/blob/master/消息队列/kafka总结.md)
+[kafka总结](https://github.com/rainluacgq/java/blob/master/消息队列/kafka总结.md)   [实战：springboot整合kafka](https://github.com/rainluacgq/java/blob/master/消息队列/springboot整合kafka.md)  
 
 [RabbitMQ总结](https://github.com/rainluacgq/java/blob/master/消息队列/RabbitMQ总结.md)    [RabbitMQ实战-保证消息不丢失](https://github.com/rainluacgq/java/blob/master/消息队列/RabbitMQ实战-确保消息不丢失.md)
 
