@@ -6,7 +6,7 @@
 
 访问地址  http://localhost:8081/#/
 
-![image-20200713155232885](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200713155232885.png)
+![image-20200713155232885](https://github.com/rainluacgq/java/tree/master/大数据/pic/image-20200713155232885.png)
 
 重要接口一览：
 
@@ -125,11 +125,11 @@ public class WordCount {
 
 在服务端输入以下代码：
 
-![image-20200715135900785](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200715135900785.png)
+![image-20200715135900785](https://github.com/rainluacgq/java/tree/master/大数据/pic/image-20200715135900785.png)
 
 窗口打印：
 
-![image-20200715140115805](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200715140115805.png)
+![image-20200715140115805](https://github.com/rainluacgq/java/tree/master/大数据/pic/image-20200715140115805.png)
 
 
 
