@@ -104,7 +104,7 @@
 
 [事务中间件-mycat等](https://github.com/rainluacgq/java/blob/master/数据库/分布式数据库中间件.md)
 
-
+[分布式ID生成](https://github.com/rainluacgq/java/blob/master/分布式/分布式全局唯一ID生成.md)
 
 **RPC**
 
