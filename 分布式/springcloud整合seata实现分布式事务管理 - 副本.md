@@ -42,6 +42,10 @@ Seata 是一款开源的分布式事务解决方案，致力于提供高性能�
 
 ![img](https://macrozheng.github.io/mall-learning/images/springcloud_seata_08.png)
 
+原理概览：
+
+![image-20200718161057016](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200718161057016.png)
+
 ### [一个典型的分布式事务过程](https://macrozheng.github.io/mall-learning/#/cloud/seata?id=一个典型的分布式事务过程)
 
 - TM 向 TC 申请开启一个全局事务，全局事务创建成功并生成一个全局唯一的 XID；
