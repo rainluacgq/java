@@ -1,6 +1,6 @@
 ### JAVA的并发工具类总结
 
-#### 1.等待多线程完成的CountDownLatch
+### 等待多线程完成的CountDownLatch
 
 ```java
 package thread;
@@ -44,6 +44,10 @@ public boolean await(long timeout, TimeUnit unit)
     return sync.tryAcquireSharedNanos(1, unit.toNanos(timeout));
 }
 ```
+
+CountDownLatch支持的方法：
+
+![image-20200719164623633](https://github.com/rainluacgq/java/blob/master/java基础/JUC/pic/image-20200719164623633.png)
 
 
 
@@ -104,7 +108,9 @@ public CyclicBarrier(int parties, Runnable barrierAction) {
 }
 ```
 
+看一下CyclicBarrier支持的方法：
 
+![image-20200719164257205](https://github.com/rainluacgq/java/blob/master/java基础/JUC/pic/image-20200719164257205.png)
 
 ### 控制并发数量的Semaphore
 
@@ -159,9 +165,11 @@ Semaphore的构造方法接受整形数字，表示许可证数量。
 
 使用方法如上所示，先获取许可证，使用完之后归还许可证。
 
+Semaphore支持的方法：
 
+![image-20200719164515706](https://github.com/rainluacgq/java/blob/master/java基础/JUC/pic/image-20200719164515706.png)
 
-#### 线程间交换数据的Exchanger
+### 线程间交换数据的Exchanger
 
 Exchanger（交换者）用于线程间协作的工具类。用于线程间的数据交换，他提供一个同步点，在同步点，两线程可以交换彼此的数据，线程通过exange方法交换数据，如果第一个线程先执行exchange方法，他会一直等待第二个线程也执行exchange方法。当两个线程都到达同步点时，就可以交换数据。
 
