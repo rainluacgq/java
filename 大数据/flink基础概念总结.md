@@ -4,7 +4,7 @@
 
 Apache Flink 是一个解决实时数据处理的计算框架，但不是数据仓库的服务，其可对有限数据流和无限数据流进行有状态计算，并可部署在各种集群环境，对各种大小的数据规模进行快速计算。
 
-![image-20200729210058970](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200729210058970.png)
+![image-20200729210058970](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200729210058970.png)
 
 Flink 是一套集高吞吐、低延迟、有状态三者于一身的分布式流式数据处理框架。
 
@@ -14,7 +14,7 @@ Flink 是一套集高吞吐、低延迟、有状态三者于一身的分布式�
 
 传统的事务处理应用的点击流 Events 可以通过 Application 写入 Transaction DB（数据库），同时也可以通过 Application 从 Transaction DB 将数据读出，并进行处理，当处理结果达到一个预警值就会触发一个 Action 动作。
 
-![image-20200729210328069](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200729210328069.png)
+![image-20200729210328069](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200729210328069.png)
 
 而事件驱动的应用处理采集的数据 Events 可以不断的放入消息队列，Flink 应用会不断 ingest（消费）消息队列中的数据，Flink 应用内部维护着一段时间的数据（state），隔一段时间会将数据持久化存储（Persistent sstorage），防止 Flink 应用死掉。Flink 应用每接受一条数据，就会处理一条数据，处理之后就会触发（trigger）一个动作（Action），同时也可以将处理结果写入外部消息队列中，其他 Flink 应用再消费。并且可以通过 checkpoint 机制保证一致性，避免意外情况。
 
@@ -22,7 +22,7 @@ Flink 是一套集高吞吐、低延迟、有状态三者于一身的分布式�
 
 ####  2.低时延
 
-![image-20200729211140694](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200729211140694.png)
+![image-20200729211140694](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200729211140694.png)
 
 Flink 引入了 Buffer Pool 和 Buffer 块的概念。在大流量时，由于 Buffer 区很快就会被写满，紧接着会通知 Netty 尽可能地发送，因此不会看到太多的延迟。但在低流量时，可能几秒钟才会有一条数据，这就意味着 Buffer pool 有很长时间没有被强制写满，因此为了保证下游系统尽可能尽快得到上游的消息，就需要有一个强制的刷新或往下游推送的触发器机制。
 
@@ -30,7 +30,7 @@ Flink 本身则具备这样的一个机制，它可以尽可能地保证 Buffer 
 
 ####  3.有状态
 
-![image-20200729211300807](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200729211300807.png)
+![image-20200729211300807](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200729211300807.png)
 
 由于 Flink 是一个实时计算的框架，因此 Flink 的状态实际上是最核心的技术资产，涉及到了频繁的写入与读取，并需要用很快的存储方案存储该状态。Flink 提供了三种状态的存储模式，分别是内存模式、文件模式和 Rocks DB 的模式。
 
@@ -40,7 +40,7 @@ Flink 本身则具备这样的一个机制，它可以尽可能地保证 Buffer 
 
 ####  4.分层API
 
-![image-20200729211724567](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200729211724567.png)
+![image-20200729211724567](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200729211724567.png)
 
 
 
