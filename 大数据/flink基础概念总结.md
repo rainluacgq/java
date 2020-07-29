@@ -18,7 +18,7 @@ Flink 是一套集高吞吐、低延迟、有状态三者于一身的分布式�
 
 而事件驱动的应用处理采集的数据 Events 可以不断的放入消息队列，Flink 应用会不断 ingest（消费）消息队列中的数据，Flink 应用内部维护着一段时间的数据（state），隔一段时间会将数据持久化存储（Persistent sstorage），防止 Flink 应用死掉。Flink 应用每接受一条数据，就会处理一条数据，处理之后就会触发（trigger）一个动作（Action），同时也可以将处理结果写入外部消息队列中，其他 Flink 应用再消费。并且可以通过 checkpoint 机制保证一致性，避免意外情况。
 
-![image-20200729210351755](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200729210351755.png)
+![image-20200729210351755](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200729210351755.png)
 
 ####  2.低时延
 
