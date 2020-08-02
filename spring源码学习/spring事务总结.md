@@ -174,8 +174,18 @@ public enum Propagation {
 #### 1) `@Transactional` 的作用范围
 
 1. **方法** ：推荐将注解使用于方法上，不过需要注意的是：**该注解只能应用到 public 方法上，否则不生效。**
-2. **类** ：如果这个注解使用在类上的话，表明该注解对该类中所有的 public 方法都生效。
-3. **接口** ：不推荐在接口上使用。因为一旦标注在Interface上并且配置了Spring AOP 使用CGLib动态代理，将会导致`@Transactional`注解失效
+
+```java
+protected TransactionAttribute computeTransactionAttribute(Method method,
+    Class<?> targetClass) {
+        // Don't allow no-public methods as required.
+        if (allowPublicMethodsOnly() && !Modifier.isPublic(method.getModifiers())) {
+return null;}
+```
+
+2.**类** ：如果这个注解使用在类上的话，表明该注解对该类中所有的 public 方法都生效。
+
+3.**接口** ：不推荐在接口上使用。因为一旦标注在Interface上并且配置了Spring AOP 使用CGLib动态代理，将会导致`@Transactional`注解失效
 
 #### 2) `@Transactional` 的常用配置参数
 
