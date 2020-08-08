@@ -1,5 +1,33 @@
 ### Flink集成ELK大屏展示
 
+一、概念一览
+
+flink的时间语义：
+
+**Event** **Time**：是事件创建的时间。它通常由事件中的时间戳描述，例如采集的日志数据中，每一条日志都会记录自己的生成时间，Flink 通过时间戳分配器访问事件时间戳。
+
+**Ingestion Time**：是数据进入 Flink 的时间。
+
+**Processing Time**：是每一个执行基于时间操作的算子的本地系统时间，与机器相关，默认的时间属性就是 Processing Time。
+
+![img](https://upload-images.jianshu.io/upload_images/6178553-879bcae80f14c1bd.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
+
+**eventTime的引入**
+
+在 Flink 的流式处理中， 绝大部分的业务都会使用 eventTime， 一般只在eventTime 无法使用时，才会被迫使用 ProcessingTime 或者 IngestionTime。
+
+**WaterMark**
+
+l Watermark 是一种衡量 Event Time 进展的机制。
+
+l **Watermark** **是用于处理乱序事件的**， 而正确的处理乱序事件， 通常用
+
+Watermark 机制结合 window 来实现。
+
+l 数据流中的 Watermark 用于表示 timestamp 小于 Watermark 的数据，都已经到达了，因此， window 的执行也是由 Watermark 触发的。
+
+l Watermark 可以理解成一个延迟触发机制，我们可以设置 Watermark 的延时时长 t，每次系统会校验已经到达的数据中最大的 maxEventTime，然后认定 eventTime小于 maxEventTime - t 的所有数据都已经到达，如果有窗口的停止时间等于maxEventTime – t，那么这个窗口被触发执行。
+
 1.添加依赖
 
 ```xml
@@ -56,6 +84,10 @@ WATERMARK FOR ts as ts - INTERVAL '5' SECOND -- 在 ts 上定义 watermark， ts
 );  
 ```
 
+
+
+
+
 创建ES结果表
 
 ```sql
@@ -89,8 +121,8 @@ GROUP BY TUMBLE(ts, INTERVAL '1' HOUR);
 
 配置Kibana
 
-![image-20200804155426548](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200804155426548.png)
+![image-20200804155426548](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200804155426548.png)
 
 保存之后即可看到：
 
-![image-20200804155514493](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200804155514493.png)
+![image-20200804155514493](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200804155514493.png)
