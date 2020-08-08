@@ -10,6 +10,14 @@ zookeeper提供了类似Linux文件系统一样的数据结构。每一个节点
 
 ![image-20200802190047317](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20200802190047317.png)
 
+节点类型：
+
+1. PERSISTENT：持久的节点。
+
+2. EPHEMERAL： 暂时的节点。
+3.  PERSISTENT_SEQUENTIAL：持久化顺序编号目录节点。
+4. EPHEMERAL_SEQUENTIAL：暂时化顺序编号目录节点。  
+
 ####  监听器原理
 
 （1）在Zookeeper的API操作中，创建main()主方法即主线程；
