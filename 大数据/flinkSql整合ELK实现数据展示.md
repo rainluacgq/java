@@ -89,8 +89,8 @@ GROUP BY TUMBLE(ts, INTERVAL '1' HOUR);
 
 配置Kibana
 
-![image-20200804155426548](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200804155426548.png)
+![image-20200804155426548](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200804155426548.png)
 
 保存之后即可看到：
 
-![image-20200804155514493](C:\Users\caiguoqing\AppData\Roaming\Typora\typora-user-images\image-20200804155514493.png)
+![image-20200804155514493](https://github.com/rainluacgq/java/blob/master/大数据/pic/image-20200804155514493.png)
