@@ -82,7 +82,7 @@
 
 **MyBatis部分**
 
-[MyBatis 自定义分页插件](https://github.com/rainluacgq/java/blob/master/MyBatis/MyBtais Generate自定义limit plugin.md)
+[MyBatis 自定义分页插件](https://github.com/rainluacgq/java/blob/master/MyBatis/MyBtaisGenerate自定义limit插件.md)
 
 [MyBatis SQL执行过程分析](https://github.com/rainluacgq/java/blob/master/MyBatis/MyBatis-Sql执行过程分析.md)
 
