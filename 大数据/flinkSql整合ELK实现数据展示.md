@@ -1,6 +1,6 @@
 ### Flink集成ELK大屏展示
 
-一、概念一览
+####   一、概念一览
 
 flink的时间语义：
 
@@ -27,6 +27,10 @@ Watermark 机制结合 window 来实现。
 l 数据流中的 Watermark 用于表示 timestamp 小于 Watermark 的数据，都已经到达了，因此， window 的执行也是由 Watermark 触发的。
 
 l Watermark 可以理解成一个延迟触发机制，我们可以设置 Watermark 的延时时长 t，每次系统会校验已经到达的数据中最大的 maxEventTime，然后认定 eventTime小于 maxEventTime - t 的所有数据都已经到达，如果有窗口的停止时间等于maxEventTime – t，那么这个窗口被触发执行。
+
+
+
+#### 实战
 
 1.添加依赖
 
