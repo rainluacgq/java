@@ -112,6 +112,8 @@
 
 **分布式**
 
+[zookeeper基础总结](https://github.com/rainluacgq/java/blob/master/分布式/springcloud整合seata实现分布式事务管理.md)    [zookeeper实战](https://github.com/rainluacgq/java/blob/master/分布式/Zookeeper/zookeeper实战.md)
+
 [分布式事务中间件-seata](https://github.com/rainluacgq/java/blob/master/分布式/springcloud整合seata实现分布式事务管理.md)
 
 [事务中间件-mycat等](https://github.com/rainluacgq/java/blob/master/数据库/分布式数据库中间件.md)
