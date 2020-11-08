@@ -224,6 +224,11 @@ public class EsProduct implements Serializable {
 
 中文分词器下载：https://github.com/medcl/elasticsearch-analysis-ik
 
+下载完成后，直接解压放到es的plugun文件夹下，在需要中文的字段下：
 
+```java
+@Field(analyzer = "ik_max_word",type = FieldType.Text)
+private String productCategoryName;
+```
 
 参考： https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html
