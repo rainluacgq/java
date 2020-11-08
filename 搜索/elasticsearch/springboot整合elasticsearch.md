@@ -231,4 +231,80 @@ public class EsProduct implements Serializable {
 private String productCategoryName;
 ```
 
+测试：
+
+```
+POST /pms/_search
+{
+  "from": 0, 
+  "size": 2, 
+  "query": {
+    "multi_match": {
+      "query": "川&普",
+      "fields": [
+        "name",
+        "brandName",
+        "productCategoryName"
+      ]
+    }
+  }
+}
+```
+
+```
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : 0.5753642,
+    "hits" : [
+      {
+        "_index" : "pms",
+        "_type" : "_doc",
+        "_id" : "1",
+        "_score" : 0.5753642,
+        "_source" : {
+          "_class" : "com.nationalday.demo.es.EsProduct",
+          "id" : 1,
+          "brandId" : 1,
+          "brandName" : "hello world ,little breast",
+          "productCategoryName" : "yellow month month bird 川普和拜登谁将赢得大选"
+        }
+      }
+    ]
+  }
+}
+```
+
+```
+POST /pms/_search
+{
+  "from": 0, 
+  "size": 2, 
+  "query": {
+    "multi_match": {
+      "query": "四川",
+      "fields": [
+        "name",
+        "brandName",
+        "productCategoryName"
+      ]
+    }
+  }
+}
+
+```
+
+使用四川也可搜索
+
 参考： https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html
