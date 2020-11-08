@@ -6,7 +6,7 @@
 
 下载Elasticsearch 6.2.2的zip包，并解压到指定目录，下载地址：https://www.elastic.co/cn/downloads/past-releases/elasticsearch-7.8.0
 
-启动后访问：http://localhost:9200/[image-20201108175913647.png](https://github.com/rainluacgq/java/blob/master/搜索/elasticsearch/pic/image-20201108175913647.png)
+启动后访问：http://localhost:9200
 
 ![image-20201108180003913](https://github.com/rainluacgq/java/blob/master/搜索/elasticsearch/pic/image-20201108180003913.png)
 
