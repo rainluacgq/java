@@ -218,7 +218,215 @@ public class EsProduct implements Serializable {
 
 注： type后续即将被废弃
 
+常用注解一览：
 
+```java
+public @interface Document {
+ //索引库名次，mysql中数据库的概念
+   String indexName();
+
+   /**
+    * Mapping type name. <br/>
+    * deprecated as Elasticsearch does not support this anymore
+    * (@see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.3/removal-of-types.html">Elastisearch removal of types documentation</a>) and will remove it in
+    * Elasticsearch 8.
+    *
+    * @deprecated since 4.0
+    */
+   @Deprecated
+   String type() default "";
+
+   /**
+    * Use server-side settings when creating the index.
+    */
+   boolean useServerConfiguration() default false;
+
+   /**
+    * Number of shards for the index {@link #indexName()}. Used for index creation. <br/>
+    * With version 4.0, the default value is changed from 5 to 1 to reflect the change in the default settings of
+    * Elasticsearch which changed to 1 as well in Elasticsearch 7.0.
+    */
+   short shards() default 1;
+
+   /**
+    * Number of replicas for the index {@link #indexName()}. Used for index creation.
+    */
+   short replicas() default 1;
+
+   /**
+    * Refresh interval for the index {@link #indexName()}. Used for index creation.
+    */
+   String refreshInterval() default "1s";
+
+   /**
+    * Index storage type for the index {@link #indexName()}. Used for index creation.
+    */
+   String indexStoreType() default "fs";
+
+   /**
+    * Configuration whether to create an index on repository bootstrapping.
+    */
+   boolean createIndex() default true;
+
+   /**
+    * Configuration of version management.
+    */
+   VersionType versionType() default VersionType.EXTERNAL;
+```
+
+字段含义：
+
+```java
+public @interface Field {
+
+   /**
+    * Alias for {@link #name}.
+    *
+    * @since 3.2
+    */
+   @AliasFor("name")
+   String value() default "";
+
+   /**
+    * The <em>name</em> to be used to store the field inside the document.
+    * <p>
+    * √5 If not set, the name of the annotated property is used.
+    *
+    * @since 3.2
+    */
+   @AliasFor("value")
+   String name() default "";
+
+   FieldType type() default FieldType.Auto;
+
+   boolean index() default true;   //是否建立倒排索引
+
+   DateFormat format() default DateFormat.none;
+
+   String pattern() default "";
+
+   boolean store() default false;
+
+   boolean fielddata() default false;
+
+   String searchAnalyzer() default "";
+
+   String analyzer() default "";
+
+   String normalizer() default "";
+
+   String[] ignoreFields() default {};
+
+   boolean includeInParent() default false;
+
+   String[] copyTo() default {};
+
+   /**
+    * @since 4.0
+    */
+   int ignoreAbove() default -1;
+
+   /**
+    * @since 4.0
+    */
+   boolean coerce() default true;
+
+   /**
+    * @since 4.0
+    */
+   boolean docValues() default true;
+
+   /**
+    * @since 4.0
+    */
+   boolean ignoreMalformed() default false;
+
+   /**
+    * @since 4.0
+    */
+   IndexOptions indexOptions() default IndexOptions.none;
+
+   /**
+    * @since 4.0
+    */
+   boolean indexPhrases() default false;
+
+   /**
+    * implemented as array to enable the empty default value
+    *
+    * @since 4.0
+    */
+   IndexPrefixes[] indexPrefixes() default {};
+
+   /**
+    * @since 4.0
+    */
+   boolean norms() default true;
+
+   /**
+    * @since 4.0
+    */
+   String nullValue() default "";
+
+   /**
+    * @since 4.0
+    */
+   int positionIncrementGap() default -1;
+
+   /**
+    * @since 4.0
+    */
+   Similarity similarity() default Similarity.Default;
+
+   /**
+    * @since 4.0
+    */
+   TermVector termVector() default TermVector.none;
+
+   /**
+    * @since 4.0
+    */
+   double scalingFactor() default 1;
+
+   /**
+    * @since 4.0
+    */
+   int maxShingleSize() default -1;
+}
+```
+
+```java
+public enum FieldType {
+    Auto, //
+    Text, //会进行分词并建了索引的字符类型
+    Keyword, // 不会进行分词建立索引的类型
+    Long, //
+    Integer, //
+    Short, //
+    Byte, //
+    Double, //
+    Float, //
+    Half_Float, //
+    Scaled_Float, //
+    Date, //
+    Date_Nanos, //
+    Boolean, //
+    Binary, //
+    Integer_Range, //
+    Float_Range, //
+    Long_Range, //
+    Double_Range, //
+    Date_Range, //
+    Ip_Range, //
+    Object, //
+    Nested, // 嵌套类型
+    Ip, //
+    TokenCount, //
+    Percolator, //
+    Flattened, //
+    Search_As_You_Type //
+}
+```
 
 ### 中文支持
 
