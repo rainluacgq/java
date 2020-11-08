@@ -6,15 +6,15 @@
 
 下载Elasticsearch 6.2.2的zip包，并解压到指定目录，下载地址：https://www.elastic.co/cn/downloads/past-releases/elasticsearch-7.8.0
 
-启动后访问：http://localhost:9200/
+启动后访问：http://localhost:9200/[image-20201108175913647.png](https://github.com/rainluacgq/java/blob/master/搜索/elasticsearch/pic/image-20201108175913647.png)
 
-![image-20201108180003913](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20201108180003913.png)
+![image-20201108180003913](https://github.com/rainluacgq/java/blob/master/搜索/elasticsearch/pic/image-20201108180003913.png)
 
 Kibana下载地址： https://artifacts.elastic.co/downloads/kibana/kibana-7.8.0-windows-x86_64.zip
 
 启动并访问： http://localhost:5601
 
-![image-20201108175913647](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20201108175913647.png)
+![image-20201108175913647](https://github.com/rainluacgq/java/blob/master/搜索/elasticsearch/pic/image-20201108175913647.png)
 
 集群状态查看：
 
@@ -176,9 +176,7 @@ spring:
 
 注意修改客户端版本，默认是7.6.2 修改成7.8.0：
 
-![image-20201108180216232](C:\Users\19349\AppData\Roaming\Typora\typora-user-images\image-20201108180216232.png)
-
-
+![image-20201108180216232](https://github.com/rainluacgq/java/blob/master/搜索/elasticsearch/pic/image-20201108180216232.png)
 
 1. 实现接口
 
