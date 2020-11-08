@@ -218,4 +218,12 @@ public class EsProduct implements Serializable {
 
 注： type后续即将被废弃
 
+
+
+### 中文支持
+
+中文分词器下载：https://github.com/medcl/elasticsearch-analysis-ik
+
+
+
 参考： https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html
