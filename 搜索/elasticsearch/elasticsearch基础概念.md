@@ -64,3 +64,105 @@
 
 https://doocs.gitee.io/advanced-java/#/./docs/high-concurrency/es-write-query-search
 
+#### 常用命令：
+
+1.统计数量
+
+```
+GET /pms/_count
+```
+
+```
+{
+  "count" : 1,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  }
+}
+```
+
+2.插入数据：
+
+```
+PUT /pms/_doc/2
+{ "brandId" : 1,
+  "brandName" : "hello world ,little breast",
+  "productCategoryName" : "yellow month month bird 川普和拜登谁将赢得大选"
+}
+```
+
+响应：
+
+```
+{
+  "_index" : "pms",
+  "_type" : "_doc",
+  "_id" : "2",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 6,
+  "_primary_term" : 3
+}
+```
+
+自动生成ID （方法改成POST，不写ID，ID就会自动生成）：
+
+```
+POST /pms/_doc/
+{ "brandId" : 1,
+  "brandName" : "hello world ,little breast",
+  "productCategoryName" : "yellow month month bird 川普和拜登谁将赢得大选"
+}
+```
+
+```
+{
+  "_index" : "pms",
+  "_type" : "_doc",
+  "_id" : "pegNx3UBaxXly-aH66LE",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 17,
+  "_primary_term" : 3
+}
+```
+
+3.查询数据：
+
+```
+GET /pms/_doc/2?pretty
+```
+
+```
+{
+  "_index" : "pms",
+  "_type" : "_doc",
+  "_id" : "2",
+  "_version" : 1,
+  "_seq_no" : 6,
+  "_primary_term" : 3,
+  "found" : true,
+  "_source" : {
+    "brandId" : 1,
+    "brandName" : "hello world ,little breast",
+    "productCategoryName" : "yellow month month bird 川普和拜登谁将赢得大选"
+  }
+}
+```
+
+
+
+参考 ;https://www.elastic.co/guide/cn/elasticsearch/guide/2.x/index-doc.html
