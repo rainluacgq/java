@@ -142,9 +142,9 @@
 
 **ElasticSearch**
 
-[ElasticSearch基础概念总结](https://github.com/rainluacgq/java/blob/master/大数据/ElastiaSearch基础概念总结.md)
+[ElasticSearch基础概念总结](https://github.com/rainluacgq/java/blob/master/搜索/elasticsearch/elasticsearch基础概念.md)
 
-[SpringData整合ElasticSearch](https://github.com/rainluacgq/java/blob/master/大数据/Spring-Data-整合elastiaSearch.md)
+[SpringData整合ElasticSearch](https://github.com/rainluacgq/java/blob/master/搜索/elasticsearch/springboot整合elasticsearch.md)
 
 #### Netty
 
