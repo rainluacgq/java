@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Consumer/Consumer.iml" filepath="$PROJECT_DIR$/Consumer/Consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Producer/Producer.iml" filepath="$PROJECT_DIR$/Producer/Producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Producer/demo.iml" filepath="$PROJECT_DIR$/Producer/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dubbo.iml" filepath="$PROJECT_DIR$/.idea/dubbo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Consumer/dubbo-consumer.iml" filepath="$PROJECT_DIR$/Consumer/dubbo-consumer.iml" />
+    </modules>
+  </component>
+</project>

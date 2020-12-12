@@ -12,6 +12,12 @@
 - 当在从库上启动复制时，首先创建I/O线程连接主库，主库随后创建Binlog Dump线程读取数据库事件并发送给I/O线程，I/O线程获取到事件数据后更新到从库的中继日志Relay Log中去，之后从库上的SQL线程读取中继日志Relay Log中更新的数据库事件并应用，如下图所示。
 - ![img](https://macrozheng.github.io/mall-learning/images/mysql_master_slave_06.png)
 
+**知识扩展**
+
+MySQL的日志系统包含：general query log、slow query log、error log（记录MySQL Server启动时、运行中、停止时的错误信息）、binary log(记录MySQL Server运行过程中的数据变更的逻辑日志)、relay log（记录从库IO线程从主库获取的主库数据变更日志）、DDL log(记录DDL语句执行时的元数据变更信息。5.7中只支持写入到文件，8.0中支持写入到innodb_ddl_log表中，注意，ddl log与online ddl的alter log不同，不要搞混了)，其中，在MySQL 5.7中，只有general query log、slow query log支持写入到表中（也支持写入到文件中），其他日志类型在MySQL 5.7版本中只支持写入到文件中，所以，下文中对于日志系统表主要介绍 general query log、slow query log表。
+
+innodb事务日志：innodb事务日志包括redo log和undo log。redo log是重做日志，提供前滚操作，undo log是回滚日志，提供回滚操作。
+
 ##### 1.mysql 主服务器配置
 
 1.新建my.cnf
