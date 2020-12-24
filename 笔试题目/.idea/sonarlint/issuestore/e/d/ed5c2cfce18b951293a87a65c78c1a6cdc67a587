@@ -1,0 +1,31 @@
+
+m	java:S127""XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
+m	java:S127:"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
+m	java:S127Q"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
+>
+java:S1148&"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+>
+java:S1148>"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+>
+java:S1148U"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+b
+java:S3008"LRename this field "A" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜—éı
+g
+java:S3008"LRename this field "B" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õşëşÿÿÿÿ
+g
+java:S3008"LRename this field "C" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›˜¸ˆùÿÿÿÿ
+M	java:S106 "9Replace this use of System.out or System.err by a logger.(ÜÄ™g
+\
+java:S3078!"AUse an "AtomicInteger" for this field; its operations are atomic.(ëæûÿÿÿÿÿ
+Q
+java:S2696!"6Make the enclosing method "static" or remove this set.(ëæûÿÿÿÿÿ
+S	java:S1068"9Replace this use of System.out or System.err by a logger.(‘Ô¶Œúÿÿÿÿ
+\
+java:S30789"AUse an "AtomicInteger" for this field; its operations are atomic.(ëæûÿÿÿÿÿ
+Q
+java:S26969"6Make the enclosing method "static" or remove this set.(ëæûÿÿÿÿÿ
+N	java:S106O"9Replace this use of System.out or System.err by a logger.(Ô·ê
+\
+java:S3078P"AUse an "AtomicInteger" for this field; its operations are atomic.(ëæûÿÿÿÿÿ
+Q
+java:S2696P"6Make the enclosing method "static" or remove this set.(ëæûÿÿÿÿÿ
