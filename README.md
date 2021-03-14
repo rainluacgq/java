@@ -120,6 +120,10 @@
 
 [分布式ID生成](https://github.com/rainluacgq/java/blob/master/分布式/分布式全局唯一ID生成.md)
 
+[分布式锁](https://github.com/rainluacgq/java/blob/master/分布式/分布式锁的实现.md)
+
+[单点登录](https://github.com/rainluacgq/java/blob/master/分布式/单点登录的实现.md)
+
 **RPC**
 
 [dubbo基础总结.md](https://github.com/rainluacgq/java/blob/master/RPC框架/dubbo/dubbo学习.md)
