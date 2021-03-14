@@ -1,5 +1,5 @@
 
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê©§£øÿÿÿÿ
 g	java:S101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(˜‡£¢ýÿÿÿÿ
 U
 java:S1118	":Add a private constructor to hide the implicit public one.(˜‡£¢ýÿÿÿÿ
-h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê©§£øÿÿÿÿ

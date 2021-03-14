@@ -1,12 +1,12 @@
 
-K
-java:S1191"5Use classes from the Java API instead of Sun classes.(šã›Ï
+S	java:S106."9Replace this use of System.out or System.err by a logger.(çªç¸ýÿÿÿÿ
 >
 java:S1148'"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+K
+java:S1191"5Use classes from the Java API instead of Sun classes.(šã›Ï
 ‘
 java:S1598"vThis file "PrintUse3Thread.java" should be located in "thread" directory, not in "G:\java\git\java\ç¬”è¯•é¢˜ç›®\code".(Ë¿öªþÿÿÿÿ
 W
 java:S1128"ARemove this unused import 'com.sun.jmx.snmp.tasks.ThreadService'.(šã›Ï
 \
 java:S2142&"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
-S	java:S106."9Replace this use of System.out or System.err by a logger.(çªç¸ýÿÿÿÿ

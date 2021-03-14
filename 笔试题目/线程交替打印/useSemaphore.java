@@ -15,6 +15,7 @@ class MyThread {
     static Semaphore semaphore1 = new Semaphore(0);
     static Semaphore semaphore2 = new Semaphore(1);
 
+
     static class PrintBar implements Runnable {
         @Override
         public void run() {

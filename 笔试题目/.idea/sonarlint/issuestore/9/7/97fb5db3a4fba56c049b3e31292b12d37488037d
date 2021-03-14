@@ -1,26 +1,26 @@
 
-m	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
-m	java:S127,"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(™€°–
+S
+java:S18547"8Remove this useless assignment to local variable "time".(é´û¥þÿÿÿÿ
+Q	java:S125;"<This block of commented-out lines of code should be removed.(ÚòÉ¿
+m	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
+D
+java:S14817")Remove this unused "time" local variable.(é´û¥þÿÿÿÿ
+F
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+\
+java:S2142)"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+H
+java:S1128"-Remove this unused import 'java.util.Random'.(èøÉ›ùÿÿÿÿ
 >
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+java:S1148*"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+\
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
 >
-java:S1148)"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+N	java:S106,"9Replace this use of System.out or System.err by a logger.(³¨†£
+m	java:S127-"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
 F
 java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
 J
 java:S1128"4Remove this unused import 'java.util.stream.Stream'.(ó÷Ž”
-H
-java:S1128"-Remove this unused import 'java.util.Random'.(èøÉ›ùÿÿÿÿ
-F
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
-\
-java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
-N	java:S106"9Replace this use of System.out or System.err by a logger.(™€°–
-\
-java:S2142("FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
-N	java:S106+"9Replace this use of System.out or System.err by a logger.(³¨†£
-S
-java:S18546"8Remove this useless assignment to local variable "time".(é´û¥þÿÿÿÿ
-D
-java:S14816")Remove this unused "time" local variable.(é´û¥þÿÿÿÿ
-Q	java:S125:"<This block of commented-out lines of code should be removed.(ÚòÉ¿

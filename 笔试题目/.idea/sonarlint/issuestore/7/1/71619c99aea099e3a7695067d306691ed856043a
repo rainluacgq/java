@@ -1,21 +1,21 @@
 
->
-java:S1148'"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+W
+java:S3078""AUse an "AtomicInteger" for this field; its operations are atomic.( §
+S	java:S106$"9Replace this use of System.out or System.err by a logger.(æíÇÁşÿÿÿÿ
 >
 java:S1148>"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
 ˜
 java:S1598"}This file "ProducerConsumerReLock.java" should be located in "thread" directory, not in "G:\java\git\java\ç¬”è¯•é¢˜ç›®\code".(Ë¿öªşÿÿÿÿ
-\
-java:S2142&"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
-W
-java:S3078""AUse an "AtomicInteger" for this field; its operations are atomic.( §
+>
+java:S1148'"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
 L
 java:S2696""6Make the enclosing method "static" or remove this set.( §
-S	java:S106$"9Replace this use of System.out or System.err by a logger.(æíÇÁşÿÿÿÿ
-\
-java:S2142="FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
-\
-java:S3078:"AUse an "AtomicInteger" for this field; its operations are atomic.(ëæûÿÿÿÿÿ
 Q
 java:S2696:"6Make the enclosing method "static" or remove this set.(ëæûÿÿÿÿÿ
+\
+java:S3078:"AUse an "AtomicInteger" for this field; its operations are atomic.(ëæûÿÿÿÿÿ
+\
+java:S2142="FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
 S	java:S106;"9Replace this use of System.out or System.err by a logger.(Í§¦’ıÿÿÿÿ
+\
+java:S2142&"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
